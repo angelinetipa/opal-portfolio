@@ -1,8 +1,10 @@
 import Reveal from '../components/Reveal.jsx'
-import { certificates } from '../constants/data.js'
+import { certificates as seedCerts } from '../constants/data.js'
+import { useCollection } from '../lib/useCollection.js'
 import './Certificates.css'
 
 export default function Certificates() {
+  const { rows: certificates } = useCollection('certificates', seedCerts)
   return (
     <main className="page container">
       <Reveal>

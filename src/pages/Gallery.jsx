@@ -1,8 +1,10 @@
 import Reveal from '../components/Reveal.jsx'
-import { artworks } from '../constants/data.js'
+import { artworks as seedArt } from '../constants/data.js'
+import { useCollection } from '../lib/useCollection.js'
 import './Gallery.css'
 
 export default function Gallery() {
+  const { rows: artworks } = useCollection('artworks', seedArt)
   return (
     <main className="page container">
       <Reveal>

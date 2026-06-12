@@ -1,10 +1,12 @@
 import Reveal from '../components/Reveal.jsx'
-import { projects } from '../constants/data.js'
+import { projects as seedProjects } from '../constants/data.js'
+import { useCollection } from '../lib/useCollection.js'
 import './Projects.css'
 
 const glow = { teal: 'glow-teal', blue: 'glow-blue', violet: 'glow-blue' }
 
 export default function Projects() {
+  const { rows: projects } = useCollection('projects', seedProjects)
   return (
     <main className="page container">
       <Reveal>

@@ -7,8 +7,8 @@
   min-height: calc(72vh - var(--nav-h));
   padding-bottom: 48px;
 }
-.hero-title { font-size: clamp(1.3rem, 2.8vw, 1.9rem); font-weight: 800; margin-bottom: 14px; line-height: 1.1; letter-spacing: 0.01em; }
-.hero-name { display: block; white-space: nowrap; font-size: clamp(1.7rem, 4.4vw, 2.5rem); line-height: 1.03; }
+.hero-title { font-size: clamp(1.5rem, 3.8vw, 2.5rem); font-weight: 800; margin-bottom: 16px; line-height: 1.08; }
+.hero-name { display: block; white-space: nowrap; font-size: clamp(1.9rem, 5vw, 3.5rem); line-height: 1.02; }
 .hero-tagline { color: var(--text-dim); font-size: 1.08rem; max-width: 480px; margin-bottom: 22px; }
 .hero-chips { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 30px; }
 .hero-cta { display: flex; gap: 14px; flex-wrap: wrap; }

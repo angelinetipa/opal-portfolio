@@ -15,12 +15,12 @@ export default function Home() {
           <Reveal delay={80}>
             <h1 className="hero-title">
               Hi, I'm<br />
-              <span className="opal-text hero-name">Ma. Angeline Tipa</span>
+              <span className="opal-text">Ma. Angeline Tipa</span>
             </h1>
           </Reveal>
           <Reveal delay={160}>
             <p className="hero-tagline">
-              Making data make sense — and ideas actually come to life.
+              Making data make sense — and ideas actually happen.
             </p>
           </Reveal>
           <Reveal delay={220}>
