@@ -1,0 +1,5 @@
+.art-card { overflow: hidden; }
+.art-img { aspect-ratio: 4/5; border-radius: var(--radius-lg) var(--radius-lg) 0 0; border: none; border-bottom: 1px dashed var(--line); }
+.art-img img { width: 100%; height: 100%; object-fit: cover; }
+.art-card figcaption { padding: 16px 22px 20px; display: flex; justify-content: space-between; gap: 10px; }
+.art-card figcaption span { color: var(--text-dim); font-family: var(--font-mono); font-size: 0.75rem; }

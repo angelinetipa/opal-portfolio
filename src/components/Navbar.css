@@ -1,0 +1,61 @@
+.nav-wrap {
+  position: fixed; top: 14px; left: 0; right: 0;
+  z-index: 100;
+  display: flex; justify-content: center;
+}
+.nav {
+  width: min(1120px, 94%);
+  height: var(--nav-h);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 22px;
+  border-radius: 999px;
+  backdrop-filter: blur(14px);
+}
+.nav-logo {
+  display: flex; align-items: center; gap: 10px;
+  font-family: var(--font-display); font-weight: 700; font-size: 1.05rem;
+}
+.nav-gem { width: 26px; height: 26px; box-shadow: var(--glow-blue); }
+.nav-links { display: flex; gap: 6px; list-style: none; }
+.nav-links a {
+  padding: 9px 16px; border-radius: 999px;
+  font-size: 0.88rem; font-weight: 600; color: var(--text-dim);
+  transition: color 0.25s, background 0.25s, box-shadow 0.25s;
+}
+.nav-links a:hover { color: var(--text); }
+.nav-links a.active {
+  color: var(--text);
+  background: var(--surface-2);
+  box-shadow: var(--clay-shadow-soft);
+}
+.nav-actions { display: flex; align-items: center; gap: 10px; }
+.theme-btn {
+  width: 42px; height: 42px; border-radius: 50%;
+  border: 1px solid var(--line);
+  background: var(--surface-2); color: var(--text);
+  font-size: 1rem;
+  box-shadow: var(--clay-shadow-soft);
+  transition: transform 0.25s ease, box-shadow 0.3s ease;
+}
+.theme-btn:hover { transform: rotate(18deg) scale(1.06); box-shadow: var(--clay-shadow-soft), var(--glow-teal); }
+.burger { display: none; flex-direction: column; gap: 4px; background: none; border: none; padding: 8px; }
+.burger span { width: 20px; height: 2px; background: var(--text); border-radius: 2px; }
+
+@media (max-width: 880px) {
+  .nav-links {
+    position: absolute; top: calc(var(--nav-h) + 22px); left: 50%;
+    transform: translateX(-50%) translateY(-8px);
+    flex-direction: column;
+    width: min(420px, 92vw);
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-md);
+    box-shadow: var(--clay-shadow);
+    padding: 12px;
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.3s, transform 0.3s;
+  }
+  .nav-links.open { opacity: 1; pointer-events: auto; transform: translateX(-50%) translateY(0); }
+  .nav-links a { display: block; }
+  .burger { display: flex; }
+}

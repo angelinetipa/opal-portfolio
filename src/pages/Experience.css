@@ -1,0 +1,24 @@
+.timeline { position: relative; padding-left: 34px; margin-bottom: 60px; }
+.timeline::before {
+  content: '';
+  position: absolute; left: 10px; top: 8px; bottom: 8px;
+  width: 2px;
+  background: linear-gradient(180deg, var(--opal-blue), var(--opal-violet), var(--opal-teal));
+  opacity: 0.5; border-radius: 2px;
+}
+.t-item { position: relative; margin-bottom: 34px; }
+.t-dot {
+  position: absolute; left: -34px; top: 26px;
+  width: 22px; height: 22px;
+  box-shadow: var(--glow-teal);
+}
+.t-card { padding: 28px 30px; }
+.t-head { display: flex; justify-content: space-between; gap: 16px; align-items: flex-start; flex-wrap: wrap; margin-bottom: 14px; }
+.t-head h3 { font-size: 1.2rem; }
+.t-org { color: var(--text-dim); font-size: 0.88rem; }
+.t-points { padding-left: 18px; color: var(--text-dim); font-size: 0.93rem; display: grid; gap: 6px; margin-bottom: 16px; }
+.t-tags { display: flex; gap: 8px; flex-wrap: wrap; }
+.awards { padding: 30px; }
+.awards-list { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 10px 30px; color: var(--text-dim); font-size: 0.93rem; }
+.awards-list li::before { content: '◆ '; color: var(--opal-teal); font-size: 0.7rem; }
+@media (max-width: 700px) { .awards-list { grid-template-columns: 1fr; } }

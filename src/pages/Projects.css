@@ -1,0 +1,9 @@
+.proj-card { overflow: hidden; display: flex; flex-direction: column; height: 100%; }
+.proj-img { height: 190px; border-radius: var(--radius-lg) var(--radius-lg) 0 0; border: none; border-bottom: 1px dashed var(--line); }
+.proj-img img { width: 100%; height: 100%; object-fit: cover; }
+.proj-body { padding: 24px 26px 28px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+.proj-sub { font-family: var(--font-mono); font-size: 0.72rem; color: var(--opal-violet); }
+.proj-body h3 { font-size: 1.25rem; }
+.proj-desc { color: var(--text-dim); font-size: 0.92rem; flex: 1; }
+.proj-tags { display: flex; gap: 8px; flex-wrap: wrap; }
+.proj-link { font-weight: 700; color: var(--opal-teal); font-size: 0.9rem; }
