@@ -10,19 +10,17 @@ export default function Home() {
       <section className="container hero">
         <div className="hero-text">
           <Reveal>
-            <p className="eyebrow">// hi, I'm Angeline</p>
+            <p className="eyebrow">SELECT * FROM portfolio WHERE owner = 'angeline';</p>
           </Reveal>
           <Reveal delay={80}>
             <h1 className="hero-title">
-              I turn <span className="opal-text">messy data</span> into clear answers —<br />
-              and rough ideas into things that <span className="opal-text">ship</span>.
+              Hi, I'm<br />
+              <span className="opal-text hero-name">Ma. Angeline Tipa</span>
             </h1>
           </Reveal>
           <Reveal delay={160}>
             <p className="hero-tagline">
-              Computer engineer working across data, software, and circuits. Careful with the
-              details, honest with every number, and a little obsessed with making the work
-              look as good as it runs.
+              Making data make sense — and ideas actually come to life.
             </p>
           </Reveal>
           <Reveal delay={220}>

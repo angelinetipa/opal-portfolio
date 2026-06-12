@@ -156,6 +156,8 @@ h1, h2, h3 { font-family: var(--font-display); line-height: 1.12; letter-spacing
 
 /* badges / chips */
 .chip {
+  position: relative;
+  overflow: hidden;
   font-family: var(--font-mono);
   font-size: 0.72rem;
   padding: 5px 12px;
@@ -164,7 +166,22 @@ h1, h2, h3 { font-family: var(--font-display); line-height: 1.12; letter-spacing
   border: 1px solid var(--line);
   color: var(--text-dim);
   box-shadow: var(--clay-shadow-soft);
+  transition: transform 0.25s ease, color 0.25s ease, box-shadow 0.3s ease, border-color 0.25s ease;
 }
+.chip::before {
+  content: '';
+  position: absolute; top: 0; left: -120%;
+  width: 100%; height: 100%;
+  background: linear-gradient(110deg, transparent, rgba(120, 200, 255, 0.35), rgba(95, 245, 138, 0.3), transparent);
+  transition: left 0.6s ease;
+}
+.chip:hover {
+  transform: translateY(-2px);
+  color: var(--text);
+  border-color: rgba(120, 200, 255, 0.5);
+  box-shadow: var(--clay-shadow-soft), var(--glow-teal);
+}
+.chip:hover::before { left: 120%; }
 
 /* buttons */
 .btn {
@@ -219,31 +236,40 @@ h1, h2, h3 { font-family: var(--font-display); line-height: 1.12; letter-spacing
 }
 
 /* ============================================
-   AMBIENT BACKGROUND — floating opal glows
+   AMBIENT BACKGROUND — opal sparkles
+   (only opacity + transform animate = smooth)
    ============================================ */
 .bg-ambient {
   position: fixed; inset: 0; z-index: -1;
   overflow: hidden; pointer-events: none;
 }
-.bg-orb {
+/* one soft fixed glow for depth — no animation */
+.bg-glow {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 60% 50% at 75% 15%, rgba(79, 141, 255, 0.12), transparent 60%),
+    radial-gradient(ellipse 55% 50% at 20% 85%, rgba(139, 108, 246, 0.1), transparent 60%);
+}
+[data-theme='light'] .bg-glow {
+  background:
+    radial-gradient(ellipse 60% 50% at 75% 15%, rgba(79, 141, 255, 0.08), transparent 60%),
+    radial-gradient(ellipse 55% 50% at 20% 85%, rgba(139, 108, 246, 0.07), transparent 60%);
+}
+.sparkle {
   position: absolute;
   border-radius: 50%;
-  filter: blur(90px);
-  opacity: 0.5;
-  animation: orbFloat 22s ease-in-out infinite;
+  opacity: 0;
+  will-change: transform, opacity;
+  animation: twinkle var(--dur) ease-in-out var(--delay) infinite;
 }
-.bg-orb.o1 { width: 460px; height: 460px; top: -120px; left: -100px;
-  background: radial-gradient(circle, var(--opal-blue), transparent 70%); }
-.bg-orb.o2 { width: 520px; height: 520px; bottom: -160px; right: -120px;
-  background: radial-gradient(circle, var(--opal-violet), transparent 70%); animation-delay: -7s; }
-.bg-orb.o3 { width: 380px; height: 380px; top: 40%; left: 55%;
-  background: radial-gradient(circle, var(--opal-teal), transparent 70%); animation-delay: -14s; opacity: 0.35; }
-[data-theme='light'] .bg-orb { opacity: 0.28; }
-[data-theme='light'] .bg-orb.o3 { opacity: 0.22; }
-@keyframes orbFloat {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  33% { transform: translate(60px, -50px) scale(1.12); }
-  66% { transform: translate(-40px, 40px) scale(0.92); }
+@keyframes twinkle {
+  0%, 100% { opacity: 0; transform: translateY(0) scale(0.6); }
+  50% { opacity: 0.85; transform: translateY(var(--drift)) scale(1); }
+}
+[data-theme='light'] .sparkle { animation-name: twinkleLight; }
+@keyframes twinkleLight {
+  0%, 100% { opacity: 0; transform: translateY(0) scale(0.6); }
+  50% { opacity: 0.5; transform: translateY(var(--drift)) scale(1); }
 }
 
 /* DEFAULT hover glow on every clay card (opal shimmer) */
@@ -256,7 +282,7 @@ h1, h2, h3 { font-family: var(--font-display); line-height: 1.12; letter-spacing
 .clay-hover.glow-teal:hover { box-shadow: var(--clay-shadow), var(--glow-teal), 0 0 70px -18px rgba(139,108,246,0.3); }
 .clay-hover.glow-blue:hover { box-shadow: var(--clay-shadow), var(--glow-blue), 0 0 70px -18px rgba(47,224,180,0.3); }
 
-@media (prefers-reduced-motion: reduce) { .bg-orb { animation: none; } }
+@media (prefers-reduced-motion: reduce) { .sparkle { animation: none; opacity: 0.4; } }
 
 /* ============================================ small screens */
 @media (max-width: 620px) {
