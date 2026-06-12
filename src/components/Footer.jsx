@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { profile } from '../constants/data.js'
 import './Footer.css'
 
@@ -11,6 +12,7 @@ export default function Footer() {
           <a href={profile.github} target="_blank" rel="noreferrer">GitHub</a>
           <a href={profile.linkedin} target="_blank" rel="noreferrer">LinkedIn</a>
           <a href={`mailto:${profile.email}`}>Email</a>
+          <Link to="/admin" className="footer-admin" title="Admin">•</Link>
         </div>
       </div>
     </footer>

@@ -10,6 +10,7 @@ import Projects from './pages/Projects.jsx'
 import Certificates from './pages/Certificates.jsx'
 import Gallery from './pages/Gallery.jsx'
 import Contact from './pages/Contact.jsx'
+import Admin from './pages/Admin.jsx'
 
 export default function App() {
   const [theme, setTheme] = useState(() => localStorage.getItem('theme') || 'dark')
@@ -34,6 +35,7 @@ export default function App() {
         <Route path="/certificates" element={<Certificates />} />
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/admin" element={<Admin />} />
       </Routes>
       <Footer />
     </>

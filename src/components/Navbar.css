@@ -9,7 +9,6 @@
   display: flex; align-items: center; justify-content: space-between;
   padding: 0 22px;
   border-radius: 999px;
-  -webkit-backdrop-filter: blur(14px);
   backdrop-filter: blur(14px);
 }
 .nav-logo {
