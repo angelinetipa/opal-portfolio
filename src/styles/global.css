@@ -149,9 +149,10 @@ h1, h2, h3 { font-family: var(--font-display); line-height: 1.12; letter-spacing
   filter: saturate(1.1);
 }
 @keyframes blobMorph {
-  0%, 100% { border-radius: 58% 42% 55% 45% / 50% 56% 44% 50%; }
-  33% { border-radius: 45% 55% 48% 52% / 58% 44% 56% 42%; }
-  66% { border-radius: 52% 48% 60% 40% / 45% 55% 45% 55%; }
+  0%, 100% { border-radius: 62% 38% 60% 40% / 45% 60% 40% 55%; }
+  25% { border-radius: 40% 60% 38% 62% / 60% 38% 62% 40%; }
+  50% { border-radius: 55% 45% 65% 35% / 38% 62% 38% 62%; }
+  75% { border-radius: 38% 62% 42% 58% / 62% 35% 65% 38%; }
 }
 
 /* badges / chips */
@@ -236,41 +237,42 @@ h1, h2, h3 { font-family: var(--font-display); line-height: 1.12; letter-spacing
 }
 
 /* ============================================
-   AMBIENT BACKGROUND — opal sparkles
-   (only opacity + transform animate = smooth)
+   AMBIENT BACKGROUND — opal sheen + cursor play-of-color
+   (gradients + transform only = smooth)
    ============================================ */
 .bg-ambient {
   position: fixed; inset: 0; z-index: -1;
   overflow: hidden; pointer-events: none;
 }
-/* one soft fixed glow for depth — no animation */
-.bg-glow {
-  position: absolute; inset: 0;
+
+/* slow iridescent opal sheen drifting across the dark base */
+.bg-sheen {
+  position: absolute; inset: -20%;
   background:
-    radial-gradient(ellipse 60% 50% at 75% 15%, rgba(79, 141, 255, 0.12), transparent 60%),
-    radial-gradient(ellipse 55% 50% at 20% 85%, rgba(139, 108, 246, 0.1), transparent 60%);
+    radial-gradient(60% 50% at 25% 30%, rgba(79, 141, 255, 0.10), transparent 60%),
+    radial-gradient(55% 45% at 80% 70%, rgba(139, 108, 246, 0.10), transparent 60%),
+    radial-gradient(50% 45% at 60% 20%, rgba(47, 224, 180, 0.08), transparent 60%),
+    radial-gradient(50% 50% at 30% 80%, rgba(94, 245, 138, 0.06), transparent 60%);
+  background-size: 180% 180%;
+  animation: sheenDrift 28s ease-in-out infinite;
 }
-[data-theme='light'] .bg-glow {
-  background:
-    radial-gradient(ellipse 60% 50% at 75% 15%, rgba(79, 141, 255, 0.08), transparent 60%),
-    radial-gradient(ellipse 55% 50% at 20% 85%, rgba(139, 108, 246, 0.07), transparent 60%);
+@keyframes sheenDrift {
+  0%, 100% { background-position: 0% 0%; }
+  50% { background-position: 100% 100%; }
 }
-.sparkle {
-  position: absolute;
-  border-radius: 50%;
-  opacity: 0;
-  will-change: transform, opacity;
-  animation: twinkle var(--dur) ease-in-out var(--delay) infinite;
+[data-theme='light'] .bg-sheen { opacity: 0.65; }
+
+/* play-of-color glow that follows the cursor */
+.bg-cursor {
+  position: absolute; top: 0; left: 0;
+  width: 180px; height: 180px;
+  background: radial-gradient(circle, rgba(79, 141, 255, 0.16), rgba(139, 108, 246, 0.10) 42%, transparent 70%);
+  filter: blur(20px);
+  transition: transform 0.18s ease-out;
+  will-change: transform;
 }
-@keyframes twinkle {
-  0%, 100% { opacity: 0; transform: translateY(0) scale(0.6); }
-  50% { opacity: 0.85; transform: translateY(var(--drift)) scale(1); }
-}
-[data-theme='light'] .sparkle { animation-name: twinkleLight; }
-@keyframes twinkleLight {
-  0%, 100% { opacity: 0; transform: translateY(0) scale(0.6); }
-  50% { opacity: 0.5; transform: translateY(var(--drift)) scale(1); }
-}
+[data-theme='light'] .bg-cursor { opacity: 0.5; }
+@media (hover: none) { .bg-cursor { display: none; } }
 
 /* DEFAULT hover glow on every clay card (opal shimmer) */
 .clay.clay-hover:hover,
@@ -282,7 +284,7 @@ h1, h2, h3 { font-family: var(--font-display); line-height: 1.12; letter-spacing
 .clay-hover.glow-teal:hover { box-shadow: var(--clay-shadow), var(--glow-teal), 0 0 70px -18px rgba(139,108,246,0.3); }
 .clay-hover.glow-blue:hover { box-shadow: var(--clay-shadow), var(--glow-blue), 0 0 70px -18px rgba(47,224,180,0.3); }
 
-@media (prefers-reduced-motion: reduce) { .sparkle { animation: none; opacity: 0.4; } }
+@media (prefers-reduced-motion: reduce) { .bg-sheen { animation: none; } .bg-cursor { transition: none; } }
 
 /* ============================================ small screens */
 @media (max-width: 620px) {

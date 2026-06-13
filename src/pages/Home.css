@@ -14,12 +14,7 @@
 .hero-cta { display: flex; gap: 14px; flex-wrap: wrap; }
 
 .hero-visual { position: relative; aspect-ratio: 0.92; max-width: 420px; margin-inline: auto; }
-.hero-gem {
-  position: absolute; inset: 2%;
-  width: 96%; height: 96%;
-  opacity: 0.5; filter: blur(16px) saturate(1.25);
-  z-index: 0;
-}
+.hero-gem { display: none; }
 .hero-photo img { width: 100%; height: 100%; object-fit: cover; border-radius: inherit; }
 .hero-photo {
   position: absolute; inset: 7%;
@@ -27,12 +22,9 @@
   overflow: hidden;
   border-radius: 58% 42% 55% 45% / 50% 56% 44% 50%;
   z-index: 1;
-  box-shadow: var(--clay-shadow), var(--glow-blue);
+  box-shadow: var(--clay-shadow);
+  filter: drop-shadow(0 0 12px rgba(79, 141, 255, 0.5)) drop-shadow(0 0 28px rgba(139, 108, 246, 0.5));
   animation: blobMorph 14s ease-in-out infinite;
-}
-@keyframes heroPhotoMorph {
-  0%, 100% { border-radius: 52% 48% 53% 47% / 49% 51% 49% 51%; }
-  50% { border-radius: 48% 52% 47% 53% / 51% 49% 51% 49%; }
 }
 .float-card {
   position: absolute; z-index: 2;
