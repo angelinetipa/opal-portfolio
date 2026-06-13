@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useAuth } from '../../lib/auth.jsx'
 import { collections, collectionOrder } from '../../constants/adminSchema.js'
 import CollectionEditor from './CollectionEditor.jsx'
+import SettingsEditor from './SettingsEditor.jsx'
 
 export default function AdminDashboard() {
   const { user, signOut } = useAuth()
@@ -28,9 +29,17 @@ export default function AdminDashboard() {
             {collections[key].label}
           </button>
         ))}
+        <button
+          className={`dash-tab ${tab === 'settings' ? 'active' : ''}`}
+          onClick={() => setTab('settings')}
+        >
+          Profile & Site
+        </button>
       </div>
 
-      <CollectionEditor table={tab} schema={collections[tab]} />
+      {tab === 'settings'
+        ? <SettingsEditor />
+        : <CollectionEditor table={tab} schema={collections[tab]} />}
     </div>
   )
 }

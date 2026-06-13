@@ -5,10 +5,10 @@
 // ============================================================
 
 export const profile = {
-  name: 'Ma. Angeline T. Tipa',
+  name: 'Ma. Angeline Tipa',
   shortName: 'Angeline',
   role: 'Computer Engineer · Data & Software',
-  tagline: 'I turn raw data and rough ideas into things that work — and look good doing it.',
+  tagline: 'Making data make sense — and ideas actually happen.',
   about: [
     `I'm a 4th-year Computer Engineering student at the Polytechnic University of the Philippines, specializing in Big Data. I work across the whole stack — from soldering and sensors up to dashboards, apps, and databases.`,
     `How I work matters as much as what I build: detail-obsessed, honest with data (I flag what's unconfirmed instead of faking numbers), and disciplined — small steps, clean structure, proper documentation. I build with identity, not just function; my projects carry a recognizable design fingerprint.`,
@@ -22,8 +22,6 @@ export const profile = {
 };
 
 export const stats = [
-  { value: '3', label: 'Internships / work experiences' },
-  { value: '10+', label: 'Academic & personal projects' },
   { value: '2026', label: 'BSCpE — expected graduation' },
   { value: 'DOST', label: 'JLSS Scholar' },
 ];

@@ -1,10 +1,12 @@
 import Reveal from '../components/Reveal.jsx'
-import { experience as seedExp, awards } from '../constants/data.js'
+import { experience as seedExp, awards as seedAwards } from '../constants/data.js'
 import { useCollection } from '../lib/useCollection.js'
+import { useContent } from '../lib/useContent.js'
 import './Experience.css'
 
 export default function Experience() {
   const { rows: experience } = useCollection('experience', seedExp)
+  const { value: awards } = useContent('awards', seedAwards)
   return (
     <main className="page container">
       <Reveal>

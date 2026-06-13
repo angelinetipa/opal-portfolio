@@ -1,8 +1,10 @@
 import Reveal from '../components/Reveal.jsx'
-import { profile } from '../constants/data.js'
+import { profile as seedProfile } from '../constants/data.js'
+import { useContent } from '../lib/useContent.js'
 import './Contact.css'
 
 export default function Contact() {
+  const { value: profile } = useContent('profile', seedProfile)
   return (
     <main className="page container">
       <Reveal>
@@ -43,7 +45,7 @@ export default function Contact() {
 
       <Reveal delay={300}>
         <div className="contact-cta">
-          <a className="btn btn-primary" href={`mailto:${profile.email}`}>Send me an email →</a>
+          <a className="btn btn-primary" href={`https://mail.google.com/mail/?view=cm&fs=1&to=${profile.email}`} target="_blank" rel="noreferrer">Send me an email →</a>
         </div>
       </Reveal>
     </main>

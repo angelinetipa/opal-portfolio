@@ -1,9 +1,23 @@
 import { Link } from 'react-router-dom'
 import Reveal from '../components/Reveal.jsx'
-import { profile, stats, toolkit, education } from '../constants/data.js'
+import { profile as seedProfile, stats as seedStats, toolkit as seedToolkit, education as seedEducation } from '../constants/data.js'
+import { useContent } from '../lib/useContent.js'
+import { useCount } from '../lib/useCount.js'
+import { experience as seedExp, projects as seedProj } from '../constants/data.js'
 import './Home.css'
 
 export default function Home() {
+  const { value: profile } = useContent('profile', seedProfile)
+  const { value: stats } = useContent('stats', seedStats)
+  const { value: toolkit } = useContent('toolkit', seedToolkit)
+  const { value: education } = useContent('education', seedEducation)
+  const expCount = useCount('experience', seedExp.length)
+  const projCount = useCount('projects', seedProj.length)
+  const displayStats = [
+    { value: String(expCount), label: 'Internships / work experiences' },
+    { value: String(projCount), label: 'Academic & personal projects' },
+    ...stats,
+  ]
   return (
     <main className="page">
       {/* ============ HERO ============ */}
@@ -15,12 +29,12 @@ export default function Home() {
           <Reveal delay={80}>
             <h1 className="hero-title">
               Hi, I'm<br />
-              <span className="opal-text">Ma. Angeline Tipa</span>
+              <span className="opal-text">{profile.name}</span>
             </h1>
           </Reveal>
           <Reveal delay={160}>
             <p className="hero-tagline">
-              Making data make sense — and ideas actually happen.
+              {profile.tagline}
             </p>
           </Reveal>
           <Reveal delay={220}>
@@ -54,7 +68,7 @@ export default function Home() {
 
       {/* ============ STATS ============ */}
       <section className="container stats">
-        {stats.map((s, i) => (
+        {displayStats.map((s, i) => (
           <Reveal key={s.label} delay={i * 90}>
             <div className="stat clay clay-hover glow-teal">
               <span className="stat-value opal-text">{s.value}</span>

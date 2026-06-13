@@ -1,8 +1,10 @@
 import { Link } from 'react-router-dom'
-import { profile } from '../constants/data.js'
+import { profile as seedProfile } from '../constants/data.js'
+import { useContent } from '../lib/useContent.js'
 import './Footer.css'
 
 export default function Footer() {
+  const { value: profile } = useContent('profile', seedProfile)
   return (
     <footer className="footer">
       <div className="container footer-inner">
