@@ -5,6 +5,7 @@ import {
   profile as seedProfile, stats as seedStats, toolkit as seedToolkit,
   education as seedEducation, awards as seedAwards,
 } from '../../constants/data.js'
+import FieldInput from './FieldInput.jsx'
 import ObjectListEditor from './ObjectListEditor.jsx'
 import StringListEditor from './StringListEditor.jsx'
 
@@ -82,6 +83,7 @@ export default function SettingsEditor() {
           targets: targetsText.split(',').map(s => s.trim()).filter(Boolean),
         })}
       >
+        <FieldInput field={{ label: 'Profile photo', type: 'image' }} value={profile.photo} onChange={url => set('photo', url)} />
         <div className="set-grid">
           <label className="fi"><span>Full name</span>
             <input value={profile.name || ''} onChange={e => set('name', e.target.value)} /></label>

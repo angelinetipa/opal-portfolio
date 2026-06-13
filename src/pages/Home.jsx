@@ -53,7 +53,9 @@ export default function Home() {
         <Reveal delay={200} className="hero-visual-wrap">
           <div className="hero-visual">
             <div className="opal-blob hero-gem" aria-hidden="true" />
-            <div className="hero-photo clay ph">profile photo — coming soon</div>
+            <div className="hero-photo clay ph">
+              {profile.photo ? <img src={profile.photo} alt={profile.name} /> : 'profile photo — coming soon'}
+            </div>
             <div className="float-card clay-soft fc-1">
               <span className="fc-num opal-text">BSCpE</span>
               <span className="fc-label">Big Data · PUP</span>
