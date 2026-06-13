@@ -21,30 +21,30 @@ export default function FieldInput({ field, value, onChange }) {
   }
 
   if (field.type === 'lines') {
-    // array <-> newline-separated text
+    // plain text while editing; CollectionEditor splits into an array on save
     return (
       <label className="fi">
         <span>{field.label}</span>
         <textarea
           rows={4}
-          value={Array.isArray(value) ? value.join('\n') : ''}
+          value={value || ''}
           placeholder={field.placeholder}
-          onChange={e => onChange(e.target.value.split('\n').filter(Boolean))}
+          onChange={e => onChange(e.target.value)}
         />
       </label>
     )
   }
 
   if (field.type === 'csv') {
-    // array <-> comma-separated text
+    // plain text while editing; split into an array on save
     return (
       <label className="fi">
         <span>{field.label}</span>
         <input
           type="text"
-          value={Array.isArray(value) ? value.join(', ') : ''}
+          value={value || ''}
           placeholder={field.placeholder}
-          onChange={e => onChange(e.target.value.split(',').map(t => t.trim()).filter(Boolean))}
+          onChange={e => onChange(e.target.value)}
         />
       </label>
     )

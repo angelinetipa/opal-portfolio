@@ -16,7 +16,7 @@ export default function Gallery() {
         </p>
       </Reveal>
 
-      <div className="grid-2 gallery-grid">
+      <div className="grid-3 gallery-grid">
         {artworks.map((a, i) => (
           <Reveal key={a.id} delay={(i % 2) * 120}>
             <figure className="clay clay-hover glow-blue art-card">

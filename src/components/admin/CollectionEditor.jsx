@@ -25,10 +25,18 @@ export default function CollectionEditor({ table, schema }) {
 
   function startNew() {
     const blank = {}
-    schema.fields.forEach(f => {
-      blank[f.key] = f.type === 'lines' || f.type === 'csv' ? [] : ''
-    })
+    schema.fields.forEach(f => { blank[f.key] = '' })
     setEditing(blank)
+  }
+
+  function startEdit(row) {
+    // arrays (lines/csv) → editable strings
+    const form = { ...row }
+    schema.fields.forEach(f => {
+      if (f.type === 'lines' && Array.isArray(row[f.key])) form[f.key] = row[f.key].join('\n')
+      if (f.type === 'csv' && Array.isArray(row[f.key])) form[f.key] = row[f.key].join(', ')
+    })
+    setEditing(form)
   }
 
   async function save() {
@@ -38,7 +46,12 @@ export default function CollectionEditor({ table, schema }) {
 
     setSaving(true); setMsg('')
     const payload = {}
-    schema.fields.forEach(f => { payload[f.key] = editing[f.key] })
+    schema.fields.forEach(f => {
+      let v = editing[f.key]
+      if (f.type === 'lines') v = String(v || '').split('\n').map(s => s.trim()).filter(Boolean)
+      if (f.type === 'csv') v = String(v || '').split(',').map(s => s.trim()).filter(Boolean)
+      payload[f.key] = v
+    })
 
     let error
     if (editing.id) {
@@ -78,7 +91,7 @@ export default function CollectionEditor({ table, schema }) {
               {r.image && <img className="ce-thumb" src={r.image} alt="" />}
               <span className="ce-title">{r[titleKey] || '(untitled)'}</span>
               <div className="ce-actions">
-                <button onClick={() => setEditing(r)}>Edit</button>
+                <button onClick={() => startEdit(r)}>Edit</button>
                 <button className="ce-del" onClick={() => remove(r.id)}>Delete</button>
               </div>
             </li>

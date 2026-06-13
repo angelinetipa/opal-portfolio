@@ -17,6 +17,7 @@
 .t-head h3 { font-size: 1.2rem; }
 .t-org { color: var(--text-dim); font-size: 0.88rem; }
 .t-points { padding-left: 18px; color: var(--text-dim); font-size: 0.93rem; display: grid; gap: 6px; margin-bottom: 16px; }
+.t-points li { overflow-wrap: anywhere; word-break: break-word; }
 .t-tags { display: flex; gap: 8px; flex-wrap: wrap; }
 .awards { padding: 30px; }
 .awards-list { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 10px 30px; color: var(--text-dim); font-size: 0.93rem; }
