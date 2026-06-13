@@ -87,8 +87,6 @@ export default function SettingsEditor() {
             <input value={profile.name || ''} onChange={e => set('name', e.target.value)} /></label>
           <label className="fi"><span>Short name</span>
             <input value={profile.shortName || ''} onChange={e => set('shortName', e.target.value)} /></label>
-          <label className="fi"><span>Role line</span>
-            <input value={profile.role || ''} onChange={e => set('role', e.target.value)} /></label>
           <label className="fi"><span>Location</span>
             <input value={profile.location || ''} onChange={e => set('location', e.target.value)} /></label>
           <label className="fi"><span>Email</span>

@@ -18,7 +18,7 @@ export default function Gallery() {
 
       <div className="grid-3 gallery-grid">
         {artworks.map((a, i) => (
-          <Reveal key={a.id} delay={(i % 2) * 120}>
+          <Reveal key={i} delay={(i % 2) * 120}>
             <figure className="clay clay-hover glow-blue art-card">
               <div className="art-img ph">
                 {a.image ? <img src={a.image} alt={a.title} /> : 'artwork — coming soon'}

@@ -17,7 +17,7 @@ export default function Projects() {
 
       <div className="grid-2">
         {projects.map((p, i) => (
-          <Reveal key={p.id} delay={(i % 2) * 120}>
+          <Reveal key={i} delay={(i % 2) * 120}>
             <article className={`clay clay-hover ${glow[p.accent]} proj-card`}>
               <div className="proj-img ph">
                 {p.image ? <img src={p.image} alt={p.title} /> : 'project image — coming soon'}

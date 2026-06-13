@@ -17,7 +17,7 @@ export default function Experience() {
 
       <div className="timeline">
         {experience.map((e, i) => (
-          <Reveal key={e.id} delay={i * 120}>
+          <Reveal key={i} delay={i * 120}>
             <article className="t-item">
               <div className="t-dot opal-blob" aria-hidden="true" />
               <div className="clay clay-hover glow-blue t-card">

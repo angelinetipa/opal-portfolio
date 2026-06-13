@@ -15,7 +15,7 @@ export default function Certificates() {
 
       <div className="grid-3">
         {certificates.map((c, i) => (
-          <Reveal key={c.id} delay={(i % 3) * 100}>
+          <Reveal key={i} delay={(i % 3) * 100}>
             <article className="clay clay-hover glow-teal cert-card">
               <div className="cert-img ph">
                 {c.image ? <img src={c.image} alt={c.title} /> : 'certificate — coming soon'}
