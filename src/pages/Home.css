@@ -56,12 +56,12 @@
 
 
 @media (max-width: 880px) {
-  .hero { grid-template-columns: 1fr; min-height: auto; padding-top: 10px; justify-items: center; }
+  .hero { grid-template-columns: 1fr; min-height: auto; padding-top: 10px; }
   .hero-text { width: 100%; }
-  .hero-visual-wrap { order: -1; display: flex; justify-content: center; width: 100%; }
-  .hero-visual { max-width: 290px; margin: 0 auto; }
-  .fc-1 { left: 0; }
-  .fc-2 { right: 0; }
+  .hero-visual-wrap { order: -1; width: 100%; }
+  .hero-visual { max-width: 280px; margin-left: auto; margin-right: auto; }
+  .fc-1 { top: 2%; left: -2%; }
+  .fc-2 { bottom: 4%; right: -2%; }
   .stats { grid-template-columns: repeat(2, 1fr); }
   .about-grid, .skill-list { grid-template-columns: 1fr; }
 }
