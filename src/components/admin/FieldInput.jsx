@@ -88,7 +88,33 @@ export default function FieldInput({ field, value, onChange }) {
       </div>
     )
   }
-
+  if (field.type === 'file') {
+    return (
+      <div className="fi">
+        <span>{field.label}</span>
+        {value && <a className="fi-note" href={value} target="_blank" rel="noreferrer">Current file ↗</a>}
+        <input
+          type="file"
+          accept={field.accept || '*'}
+          onChange={async e => {
+            const file = e.target.files?.[0]
+            if (!file) return
+            setErr(''); setUploading(true)
+            try {
+              const url = await uploadImage(file)
+              onChange(url)
+            } catch (e2) {
+              setErr('Upload failed. Try again.')
+            } finally {
+              setUploading(false)
+            }
+          }}
+        />
+        {uploading && <small className="fi-note">Uploading…</small>}
+        {err && <small className="fi-err">{err}</small>}
+      </div>
+    )
+  }
   // default text
   return (
     <label className="fi">

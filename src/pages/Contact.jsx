@@ -46,6 +46,7 @@ export default function Contact() {
       <Reveal delay={300}>
         <div className="contact-cta">
           <a className="btn btn-primary" href={`https://mail.google.com/mail/?view=cm&fs=1&to=${profile.email}`} target="_blank" rel="noreferrer">Send me an email →</a>
+          {profile.cv && <a className="btn btn-ghost" href={profile.cv} target="_blank" rel="noreferrer" style={{ marginLeft: 12 }}>Download CV ↓</a>}
         </div>
       </Reveal>
     </main>

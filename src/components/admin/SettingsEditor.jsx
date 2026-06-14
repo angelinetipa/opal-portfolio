@@ -84,6 +84,7 @@ export default function SettingsEditor() {
         })}
       >
         <FieldInput field={{ label: 'Profile photo', type: 'image' }} value={profile.photo} onChange={url => set('photo', url)} />
+        <FieldInput field={{ label: 'CV / Resume (PDF)', type: 'file', accept: 'application/pdf' }} value={profile.cv} onChange={url => set('cv', url)} />
         <div className="set-grid">
           <label className="fi"><span>Full name</span>
             <input value={profile.name || ''} onChange={e => set('name', e.target.value)} /></label>
