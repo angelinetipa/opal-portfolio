@@ -97,3 +97,13 @@
 }
 .sle-row input:focus { outline: none; border-color: var(--opal-teal); box-shadow: var(--glow-teal); }
 .sle-remove { margin-top: 0; }
+/* reorder arrows */
+.ce-move { display: flex; flex-direction: column; gap: 2px; flex-shrink: 0; }
+.ce-move button {
+  width: 26px; height: 22px; line-height: 1;
+  border: 1px solid var(--line); background: var(--surface-2); color: var(--text-dim);
+  border-radius: 7px; font-size: 0.65rem;
+  transition: color 0.2s, box-shadow 0.2s;
+}
+.ce-move button:hover:not(:disabled) { color: var(--opal-teal); box-shadow: var(--glow-teal); }
+.ce-move button:disabled { opacity: 0.3; cursor: not-allowed; }

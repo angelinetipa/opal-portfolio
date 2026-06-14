@@ -30,7 +30,6 @@ export default function CollectionEditor({ table, schema }) {
   }
 
   function startEdit(row) {
-    // arrays (lines/csv) → editable strings
     const form = { ...row }
     schema.fields.forEach(f => {
       if (f.type === 'lines' && Array.isArray(row[f.key])) form[f.key] = row[f.key].join('\n')
@@ -40,7 +39,6 @@ export default function CollectionEditor({ table, schema }) {
   }
 
   async function save() {
-    // basic required check
     const missing = schema.fields.find(f => f.required && !editing[f.key])
     if (missing) { setMsg(`"${missing.label}" is required.`); return }
 
@@ -71,6 +69,19 @@ export default function CollectionEditor({ table, schema }) {
     if (!error) load()
   }
 
+  async function move(i, dir) {
+    const j = i + dir
+    if (j < 0 || j >= rows.length) return
+    const next = [...rows]
+    ;[next[i], next[j]] = [next[j], next[i]]
+    setRows(next)
+    await Promise.all(
+      next.map((row, idx) =>
+        supabase.from(table).update({ sort_order: idx }).eq('id', row.id)
+      )
+    )
+  }
+
   const titleKey = schema.fields[0].key
 
   return (
@@ -86,8 +97,12 @@ export default function CollectionEditor({ table, schema }) {
         <p className="ce-empty">Nothing here yet. Click “Add new” to create your first entry.</p>
       ) : (
         <ul className="ce-list">
-          {rows.map(r => (
+          {rows.map((r, i) => (
             <li key={r.id} className="clay-soft ce-row">
+              <div className="ce-move">
+                <button onClick={() => move(i, -1)} disabled={i === 0} aria-label="Move up">▲</button>
+                <button onClick={() => move(i, 1)} disabled={i === rows.length - 1} aria-label="Move down">▼</button>
+              </div>
               {r.image && <img className="ce-thumb" src={r.image} alt="" />}
               <span className="ce-title">{r[titleKey] || '(untitled)'}</span>
               <div className="ce-actions">
