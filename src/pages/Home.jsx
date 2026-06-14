@@ -38,6 +38,7 @@ export default function Home() {
             </p>
           </Reveal>
           <Reveal delay={220}>
+            <p className="hero-chips-label">Targeting roles in:</p>
             <div className="hero-chips">
               {profile.targets.map(t => <span key={t} className="chip">{t}</span>)}
             </div>

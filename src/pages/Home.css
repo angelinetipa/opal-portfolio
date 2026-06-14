@@ -10,6 +10,7 @@
 .hero-title { font-size: clamp(1.5rem, 3.8vw, 2.5rem); font-weight: 800; margin-bottom: 16px; line-height: 1.08; }
 .hero-name { display: block; white-space: nowrap; font-size: clamp(1.9rem, 5vw, 3.5rem); line-height: 1.02; }
 .hero-tagline { color: var(--text-dim); font-size: 1.08rem; max-width: 480px; margin-bottom: 22px; }
+.hero-chips-label { font-family: var(--font-mono); font-size: 0.74rem; color: var(--text-dim); margin-bottom: 8px; }
 .hero-chips { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 30px; }
 .hero-cta { display: flex; gap: 14px; flex-wrap: wrap; }
 
