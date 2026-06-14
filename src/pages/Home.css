@@ -23,7 +23,7 @@
   border-radius: 58% 42% 55% 45% / 50% 56% 44% 50%;
   z-index: 1;
   box-shadow: var(--clay-shadow);
-  filter: drop-shadow(0 0 12px rgba(79, 141, 255, 0.5)) drop-shadow(0 0 28px rgba(139, 108, 246, 0.5));
+  filter: drop-shadow(0 0 12px rgba(79, 141, 255, 0.6)) drop-shadow(0 0 28px rgba(139, 108, 246, 0.6));
   animation: blobMorph 14s ease-in-out infinite;
 }
 .float-card {
@@ -46,6 +46,7 @@
 
 /* ABOUT */
 .about { margin-bottom: 72px; padding-top: 64px; }
+.skills { padding-top: 40px; }
 .about-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 36px; margin-top: 28px; }
 .about-copy p { color: var(--text-dim); margin-bottom: 16px; font-size: 1.02rem; }
 .edu-card { padding: 28px; }
@@ -56,8 +57,8 @@
 
 @media (max-width: 880px) {
   .hero { grid-template-columns: 1fr; min-height: auto; padding-top: 10px; }
-  .hero-visual-wrap { order: -1; }
-  .hero-visual { max-width: 300px; }
+  .hero-visual-wrap { order: -1; display: flex; justify-content: center; width: 100%; }
+  .hero-visual { max-width: 300px; margin: 0 auto; }
   .stats { grid-template-columns: repeat(2, 1fr); }
   .about-grid, .skill-list { grid-template-columns: 1fr; }
 }

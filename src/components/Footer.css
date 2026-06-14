@@ -5,6 +5,10 @@
 .footer-links a { color: var(--text-dim); transition: color 0.25s; }
 .footer-links a:hover { color: var(--opal-teal); }
 .footer-note { font-size: 0.78rem; color: var(--text-dim); text-align: center; flex: 1 1 auto; }
-@media (max-width: 700px) { .footer-note { order: 3; flex-basis: 100%; } }
+@media (max-width: 700px) {
+  .footer-inner { flex-direction: column; text-align: center; gap: 14px; }
+  .footer-note { order: 2; flex-basis: auto; }
+  .footer-links { order: 3; justify-content: center; width: 100%; }
+}
 .footer-admin { color: var(--text-dim); opacity: 0.4; font-size: 1.1rem; transition: opacity 0.25s, color 0.25s; }
 .footer-admin:hover { opacity: 1; color: var(--opal-teal); }
