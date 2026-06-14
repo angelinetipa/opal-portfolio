@@ -85,6 +85,7 @@ export default function FieldInput({ field, value, onChange }) {
         />
         {uploading && <small className="fi-note">Uploading…</small>}
         {err && <small className="fi-err">{err}</small>}
+        <small className="fi-hint">Tip: compress large photos or scans first (e.g. <a href="https://tinypng.com" target="_blank" rel="noreferrer">tinypng.com</a>) so your site loads fast.</small>
       </div>
     )
   }

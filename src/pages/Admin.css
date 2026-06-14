@@ -107,3 +107,6 @@
 }
 .ce-move button:hover:not(:disabled) { color: var(--opal-teal); box-shadow: var(--glow-teal); }
 .ce-move button:disabled { opacity: 0.3; cursor: not-allowed; }
+
+.fi-hint { color: var(--text-dim); font-size: 0.74rem; line-height: 1.5; }
+.fi-hint a { color: var(--opal-teal); text-decoration: underline; }
