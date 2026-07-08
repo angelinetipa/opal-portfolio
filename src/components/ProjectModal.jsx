@@ -15,6 +15,8 @@ export default function ProjectModal({ project, onClose }) {
 
   if (!project) return null
 
+  const live = project.live || project.link // supports old data
+
   return (
     <div className="pm-bg" onClick={onClose}>
       <div className="clay pm" onClick={e => e.stopPropagation()}>
@@ -35,10 +37,20 @@ export default function ProjectModal({ project, onClose }) {
               {project.tags.map(t => <span key={t} className="chip">{t}</span>)}
             </div>
           )}
-          {project.link && (
-            <a className="btn btn-primary pm-link" href={project.link} target="_blank" rel="noreferrer">
-              Visit project →
-            </a>
+
+          {(live || project.repo) && (
+            <div className="pm-actions">
+              {live && (
+                <a className="btn btn-primary" href={live} target="_blank" rel="noreferrer">
+                  Visit live ↗
+                </a>
+              )}
+              {project.repo && (
+                <a className="btn btn-ghost" href={project.repo} target="_blank" rel="noreferrer">
+                  View code ↗
+                </a>
+              )}
+            </div>
           )}
         </div>
       </div>

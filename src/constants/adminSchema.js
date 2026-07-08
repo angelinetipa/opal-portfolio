@@ -19,11 +19,13 @@ export const collections = {
     fields: [
       { key: 'title', label: 'Title', type: 'text', required: true },
       { key: 'subtitle', label: 'Subtitle', type: 'text' },
+      { key: 'category', label: 'Category', type: 'select', options: ['featured', 'coursework'] },
       { key: 'description', label: 'Description', type: 'textarea' },
       { key: 'tags', label: 'Tags (comma separated)', type: 'csv' },
       { key: 'accent', label: 'Accent color', type: 'select', options: ['blue', 'teal', 'violet'] },
       { key: 'image', label: 'Image', type: 'image' },
-      { key: 'link', label: 'Link (optional)', type: 'text', placeholder: 'https://...' },
+      { key: 'live', label: 'Live URL (optional)', type: 'text', placeholder: 'https://...' },
+      { key: 'repo', label: 'Repo URL (optional)', type: 'text', placeholder: 'https://github.com/...' },
     ],
   },
   certificates: {
