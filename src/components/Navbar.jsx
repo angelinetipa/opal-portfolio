@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { NavLink } from 'react-router-dom'
+import { profile } from '../constants/data.js'
 import './Navbar.css'
 
 const links = [
@@ -37,6 +38,17 @@ export default function Navbar({ theme, onToggleTheme }) {
         </ul>
 
         <div className="nav-actions">
+          {profile.resume && (
+            <a
+              className="resume-btn"
+              href={profile.resume}
+              target="_blank"
+              rel="noreferrer"
+              title="Open résumé (PDF)"
+            >
+              Résumé
+            </a>
+          )}
           <button
             className="theme-btn"
             onClick={onToggleTheme}

@@ -14,6 +14,27 @@
 .hero-chips { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 30px; }
 .hero-cta { display: flex; gap: 14px; flex-wrap: wrap; }
 
+/* open-to-work status pill */
+.hero-status {
+  display: inline-flex; align-items: center; gap: 8px;
+  margin-top: 12px;
+  padding: 6px 14px; border-radius: 999px;
+  background: var(--surface-2); border: 1px solid var(--line);
+  font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-dim);
+  box-shadow: var(--clay-shadow-soft);
+}
+.hs-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: #35d07f;
+  box-shadow: 0 0 0 0 rgba(53, 208, 127, 0.6);
+  animation: hsPulse 2s ease-out infinite;
+}
+@keyframes hsPulse {
+  0% { box-shadow: 0 0 0 0 rgba(53, 208, 127, 0.55); }
+  70% { box-shadow: 0 0 0 8px rgba(53, 208, 127, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(53, 208, 127, 0); }
+}
+
 .hero-visual { position: relative; aspect-ratio: 0.92; max-width: 420px; margin-inline: auto; }
 .hero-gem { display: none; }
 .hero-photo img { width: 100%; height: 100%; object-fit: cover; border-radius: inherit; }
@@ -45,6 +66,19 @@
 .stat-value { font-family: var(--font-display); font-size: 1.9rem; font-weight: 800; }
 .stat-label { font-size: 0.8rem; color: var(--text-dim); }
 
+/* SELECTED WORK */
+.selected { margin-bottom: 24px; padding-top: 40px; }
+.sel-grid { margin-top: 28px; }
+.sel-card { overflow: hidden; display: flex; flex-direction: column; height: 100%; }
+.sel-body { padding: 20px 22px 22px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+.sel-body h3 { font-size: 1.12rem; }
+.sel-sub { font-family: var(--font-mono); font-size: 0.72rem; color: var(--opal-violet); }
+.sel-actions { display: flex; gap: 10px; margin-top: auto; padding-top: 8px; flex-wrap: wrap; }
+.sel-more { display: flex; justify-content: center; margin-top: 30px; }
+
+/* small buttons (shared look with Projects) */
+.btn-sm { padding: 7px 14px; font-size: 0.82rem; }
+
 /* ABOUT */
 .about { margin-bottom: 72px; padding-top: 64px; }
 .skills { padding-top: 40px; }
@@ -54,7 +88,6 @@
 .edu-row { display: flex; justify-content: space-between; gap: 14px; align-items: flex-start; padding: 14px 0; border-bottom: 1px solid var(--line); }
 .edu-row:last-child { border-bottom: none; }
 .edu-degree { color: var(--text-dim); font-size: 0.85rem; }
-
 
 @media (max-width: 880px) {
   .hero { grid-template-columns: 1fr; min-height: auto; padding-top: 10px; }

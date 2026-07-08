@@ -1,23 +1,38 @@
 import { Link } from 'react-router-dom'
 import Reveal from '../components/Reveal.jsx'
-import { profile as seedProfile, stats as seedStats, toolkit as seedToolkit, education as seedEducation } from '../constants/data.js'
+import BrowserFrame from '../components/BrowserFrame.jsx'
+import {
+  profile as seedProfile,
+  stats as seedStats,
+  toolkit as seedToolkit,
+  education as seedEducation,
+  experience as seedExp,
+  projects as seedProj,
+} from '../constants/data.js'
 import { useContent } from '../lib/useContent.js'
+import { useCollection } from '../lib/useCollection.js'
 import { useCount } from '../lib/useCount.js'
-import { experience as seedExp, projects as seedProj } from '../constants/data.js'
 import './Home.css'
+
+const glow = { teal: 'glow-teal', blue: 'glow-blue', violet: 'glow-violet' }
 
 export default function Home() {
   const { value: profile } = useContent('profile', seedProfile)
   const { value: stats } = useContent('stats', seedStats)
   const { value: toolkit } = useContent('toolkit', seedToolkit)
   const { value: education } = useContent('education', seedEducation)
+  const { rows: projects } = useCollection('projects', seedProj)
   const expCount = useCount('experience', seedExp.length)
   const projCount = useCount('projects', seedProj.length)
+
+  const featured = projects.filter(p => (p.category || 'featured') !== 'coursework').slice(0, 3)
+
   const displayStats = [
     { value: String(expCount), label: 'Internships / work experiences' },
     { value: String(projCount), label: 'Academic & personal projects' },
     ...stats,
   ]
+
   return (
     <main className="page">
       {/* ============ HERO ============ */}
@@ -25,6 +40,9 @@ export default function Home() {
         <div className="hero-text">
           <Reveal>
             <p className="eyebrow">SELECT * FROM portfolio WHERE owner = 'angeline';</p>
+            {profile.status && (
+              <span className="hero-status"><span className="hs-dot" />{profile.status}</span>
+            )}
           </Reveal>
           <Reveal delay={80}>
             <h1 className="hero-title">
@@ -46,6 +64,9 @@ export default function Home() {
           <Reveal delay={300}>
             <div className="hero-cta">
               <Link to="/projects" className="btn btn-primary">View projects →</Link>
+              {profile.resume && (
+                <a href={profile.resume} target="_blank" rel="noreferrer" className="btn btn-ghost">Résumé (PDF)</a>
+              )}
               <Link to="/contact" className="btn btn-ghost">Get in touch</Link>
             </div>
           </Reveal>
@@ -80,6 +101,43 @@ export default function Home() {
           </Reveal>
         ))}
       </section>
+
+      {/* ============ SELECTED WORK ============ */}
+      {featured.length > 0 && (
+        <section className="container selected">
+          <Reveal>
+            <p className="eyebrow">selected_work.top(3)</p>
+            <h2 className="section-title">Selected work</h2>
+            <p className="section-sub">Deployed, real-world builds — across data, software, and IoT.</p>
+          </Reveal>
+          <div className="grid-3 sel-grid">
+            {featured.map((p, i) => (
+              <Reveal key={p.id || i} delay={i * 110}>
+                <article className={`clay clay-hover ${glow[p.accent] || 'glow-teal'} sel-card`}>
+                  <BrowserFrame src={p.image} alt={p.title} url={p.live} />
+                  <div className="sel-body">
+                    <p className="sel-sub">{p.subtitle}</p>
+                    <h3>{p.title}</h3>
+                    <div className="sel-actions">
+                      {p.live && (
+                        <a className="btn btn-primary btn-sm" href={p.live} target="_blank" rel="noreferrer">Live ↗</a>
+                      )}
+                      {p.repo && (
+                        <a className="btn btn-ghost btn-sm" href={p.repo} target="_blank" rel="noreferrer">Code ↗</a>
+                      )}
+                    </div>
+                  </div>
+                </article>
+              </Reveal>
+            ))}
+          </div>
+          <Reveal>
+            <div className="sel-more">
+              <Link to="/projects" className="btn btn-ghost">View all projects →</Link>
+            </div>
+          </Reveal>
+        </section>
+      )}
 
       {/* ============ ABOUT ============ */}
       <section className="container about">
