@@ -20,6 +20,7 @@
 .t-points li { overflow-wrap: anywhere; word-break: break-word; }
 .t-tags { display: flex; gap: 8px; flex-wrap: wrap; }
 .awards { padding: 30px; }
-.awards-list { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 10px 30px; color: var(--text-dim); font-size: 0.93rem; }
+.awards-list { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 14px 40px; color: var(--text-dim); font-size: 0.93rem; }
+.awards-list li { text-wrap: balance; line-height: 1.55; }
 .awards-list li::before { content: '◆ '; color: var(--opal-teal); font-size: 0.7rem; }
 @media (max-width: 700px) { .awards-list { grid-template-columns: 1fr; } }

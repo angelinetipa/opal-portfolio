@@ -207,10 +207,10 @@ export const certificates = [
 ];
 
 export const awards = [
-  'DOST–JLSS Scholar (2024) — competitive scholarship examination',
-  'BIO-FISH — Top 8 entries, 4th Annual Prototyping Exhibit (APEAR 2026)',
-  '1st Place — Feature Writing (DSPC); RSPC Regional delegate (2015)',
-  'Arnis medalist — Solo Baston & Combative events',
+  'DOST–JLSS Scholar — competitive scholarship exam (2024)',
+  'BIO-FISH — Top 8 Finalist, APEAR Prototyping Exhibit (2026)',
+  '1st Place, Feature Writing (DSPC) · RSPC delegate (2015)',
+  'Arnis medalist — Solo Baston & Combative events (2017)',
 ];
 
 export const artworks = [
