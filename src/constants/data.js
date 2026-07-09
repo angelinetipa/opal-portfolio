@@ -23,6 +23,7 @@ export const profile = {
   github: 'https://github.com/angelinetipa',
   photo: '/profile.webp', // set to '/profile.webp' after adding public/profile.webp
   resume: '/resume.pdf', // drop your PDF at public/resume.pdf
+  cv: '/cv.pdf',         // drop your CV PDF at public/cv.pdf
   targets: ['Software Developer', 'Data Engineer', 'Data Analyst', 'QA Engineer'],
 };
 
@@ -200,10 +201,12 @@ export const projects = [
 
 export const certificates = [
   // Add the image later: image: '/certs/filename.jpg'
-  { id: 'c1', title: 'CCNA: Introduction to Networks', issuer: 'Cisco Networking Academy', year: '2026', image: null },
-  { id: 'c2', title: 'Associate Data Analyst', issuer: 'DataCamp', year: '2026', image: null },
-  { id: 'c3', title: 'Power BI Fundamentals', issuer: 'DataCamp', year: '2026', image: null },
-  { id: 'c4', title: 'HCCDA – GaussDB', issuer: 'Huawei ICT Academy', year: '2025', image: null },
+  { id: 'c1', title: 'CCNA: Introduction to Networks', issuer: 'Cisco Networking Academy', year: '2026', image: '/certs/ccna.webp' },
+  { id: 'c2', title: 'Associate Data Analyst', issuer: 'DataCamp', year: '2026', image: '/certs/ada.webp' },
+  { id: 'c3', title: 'Power BI Fundamentals', issuer: 'DataCamp', year: '2026', image: '/certs/pbi.webp' },
+  { id: 'c4', title: 'HCCDA – GaussDB', issuer: 'Huawei ICT Academy', year: '2025', image: '/certs/gaussdb.webp' },
+  { id: 'c5', title: 'Project LODI — OJT Completion (300 hrs)', issuer: 'DOST Central Office – ITD', year: '2025', image: '/certs/lodi.webp' }, 
+  { id: 'c6', title: 'MIS Internship Completion (300 hrs)', issuer: 'Local Government of Cavite', year: '2024', image: '/certs/lgu.webp' },
 ];
 
 export const awards = [
@@ -214,12 +217,24 @@ export const awards = [
 ];
 
 export const artworks = [
-  // Realistic portrait drawings (graphite, real-people references).
-  // Replace image: null with '/art/filename.jpg'
-  { id: 'a1', title: 'Portrait study I', medium: 'Graphite on paper', image: null },
-  { id: 'a2', title: 'Portrait study II', medium: 'Graphite on paper', image: null },
-  { id: 'a3', title: 'Portrait study III', medium: 'Graphite on paper', image: null },
-  { id: 'a4', title: 'Portrait study IV', medium: 'Graphite on paper', image: null },
+  {
+    id: 'a1',
+    title: 'Yeji (ITZY)',
+    medium: 'Graphite on paper',
+    image: 'https://hcorszokbotwdbpjglvl.supabase.co/storage/v1/object/public/media/1781426161087-dinup0.jpg',
+  },
+  {
+    id: 'a2',
+    title: 'Cat Portrait',
+    medium: 'Graphite on paper',
+    image: 'https://hcorszokbotwdbpjglvl.supabase.co/storage/v1/object/public/media/1781426227544-1a0qqu.jpg',
+  },
+  {
+    id: 'a3',
+    title: 'Byeon Woo-seok',
+    medium: 'Graphite on paper',
+    image: 'https://hcorszokbotwdbpjglvl.supabase.co/storage/v1/object/public/media/1781426400383-z6ukfi.jpg',
+  },
 ];
 
 export const education = [
