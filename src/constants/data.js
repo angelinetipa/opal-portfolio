@@ -21,7 +21,7 @@ export const profile = {
   phone: '0928 372 6099',
   linkedin: 'https://www.linkedin.com/in/maatipa',
   github: 'https://github.com/angelinetipa',
-  photo: null, // set to '/profile.webp' after adding public/profile.webp
+  photo: '/profile.webp', // set to '/profile.webp' after adding public/profile.webp
   resume: '/resume.pdf', // drop your PDF at public/resume.pdf
   targets: ['Software Developer', 'Data Engineer', 'Data Analyst', 'QA Engineer'],
 };
@@ -112,7 +112,6 @@ export const projects = [
       'Cross-platform app controlling an ESP32 machine that turns fish-scale waste into bioplastic across four automated stages. Built with React Native + Expo (SDK 54) and Supabase realtime (RLS, subscriptions) for live machine status and remote command control. Modular, production-style codebase with a custom design system and scripted Demo Mode; shipped to web (Vercel) and Android (EAS Build).',
     tags: ['React Native', 'Expo', 'Supabase', 'ESP32', 'IoT'],
     accent: 'teal',
-    fit: 'contain', // phone screenshot → show whole image on gradient
     image: 'projects/biofish.webp',
     live: 'https://biofish-control.vercel.app',
     repo: 'https://github.com/angelinetipa/biofish-control',

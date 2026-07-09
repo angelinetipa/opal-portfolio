@@ -15,10 +15,7 @@
   border-bottom: 1px solid var(--line);
 }
 .bf-dots { display: inline-flex; gap: 6px; }
-.bf-dots span {
-  width: 10px; height: 10px; border-radius: 50%;
-  background: var(--line);
-}
+.bf-dots span { width: 10px; height: 10px; border-radius: 50%; }
 .bf-dots span:nth-child(1) { background: var(--opal-fire); }
 .bf-dots span:nth-child(2) { background: var(--opal-teal); }
 .bf-dots span:nth-child(3) { background: var(--opal-blue); }
@@ -31,39 +28,33 @@
   text-overflow: ellipsis;
 }
 
-/* screenshot area — fixed 16:10 so all cards align */
+/* screenshot area — FIXED 16:10 on every card, identical everywhere.
+   Image is contained (fully visible, never cropped) on a soft opal gradient. */
 .bframe-view {
   position: relative;
+  width: 100%;
   aspect-ratio: 16 / 10;
-  background: var(--bg-soft);
-  display: grid;
-  place-items: center;
+  overflow: hidden; /* hard stop: nothing can stretch the frame */
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    radial-gradient(120% 130% at 15% 10%, rgba(79, 141, 255, 0.14), transparent 55%),
+    radial-gradient(120% 130% at 85% 90%, rgba(139, 108, 246, 0.14), transparent 55%),
+    var(--bg-soft);
 }
 .bframe-view img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: top center;
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 8px 26px rgba(0, 0, 0, 0.35);
 }
 .bf-empty {
   font-family: var(--font-mono);
   font-size: 0.78rem;
   color: var(--text-dim);
-}
-
-/* contain mode: whole (portrait/phone) image visible on a soft opal gradient */
-.bf-contain {
-  background:
-    radial-gradient(120% 130% at 15% 10%, rgba(79, 141, 255, 0.16), transparent 55%),
-    radial-gradient(120% 130% at 85% 90%, rgba(139, 108, 246, 0.16), transparent 55%),
-    var(--bg-soft);
-  padding: 14px;
-}
-.bf-contain img {
-  width: auto;
-  height: 100%;
-  max-width: 100%;
-  object-fit: contain;
-  border-radius: 10px;
-  box-shadow: 0 8px 26px rgba(0, 0, 0, 0.35);
 }

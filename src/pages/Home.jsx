@@ -108,7 +108,7 @@ export default function Home() {
             {featured.map((p, i) => (
               <Reveal key={p.id || i} delay={i * 110}>
                 <article className={`clay clay-hover ${glow[p.accent] || 'glow-teal'} sel-card`}>
-                  <BrowserFrame src={p.image} alt={p.title} url={p.live} fit={p.fit} />
+                  <BrowserFrame src={p.image} alt={p.title} url={p.live} />
                   <div className="sel-body">
                     <p className="sel-sub">{p.subtitle}</p>
                     <h3>{p.title}</h3>
