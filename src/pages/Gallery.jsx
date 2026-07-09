@@ -1,10 +1,14 @@
+import { useState } from 'react'
 import Reveal from '../components/Reveal.jsx'
+import Lightbox from '../components/Lightbox.jsx'
 import { artworks as seedArt } from '../constants/data.js'
 import { useCollection } from '../lib/useCollection.js'
 import './Gallery.css'
 
 export default function Gallery() {
   const { rows: artworks } = useCollection('artworks', seedArt)
+  const [zoom, setZoom] = useState(null)
+
   return (
     <main className="page container">
       <Reveal>
@@ -18,10 +22,21 @@ export default function Gallery() {
 
       <div className="grid-3 gallery-grid">
         {artworks.map((a, i) => (
-          <Reveal key={i} delay={(i % 2) * 120}>
+          <Reveal key={a.id || i} delay={(i % 2) * 120}>
             <figure className="clay clay-hover glow-blue art-card">
-              <div className="art-img ph">
-                {a.image ? <img src={a.image} alt={a.title} /> : 'artwork — coming soon'}
+              <div
+                className={`art-img ${a.image ? 'art-clickable' : 'ph'}`}
+                onClick={() => a.image && setZoom(a)}
+                role={a.image ? 'button' : undefined}
+                tabIndex={a.image ? 0 : undefined}
+                onKeyDown={e => { if (a.image && e.key === 'Enter') setZoom(a) }}
+              >
+                {a.image ? (
+                  <>
+                    <img src={a.image} alt={a.title} />
+                    <span className="art-zoom">⤢ View</span>
+                  </>
+                ) : 'artwork — coming soon'}
               </div>
               <figcaption>
                 <strong>{a.title}</strong>
@@ -31,6 +46,8 @@ export default function Gallery() {
           </Reveal>
         ))}
       </div>
+
+      <Lightbox src={zoom?.image} alt={zoom?.title} onClose={() => setZoom(null)} />
     </main>
   )
 }

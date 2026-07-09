@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import Reveal from '../components/Reveal.jsx'
 import { profile as seedProfile } from '../constants/data.js'
 import { useContent } from '../lib/useContent.js'
@@ -5,6 +6,18 @@ import './Contact.css'
 
 export default function Contact() {
   const { value: profile } = useContent('profile', seedProfile)
+  const [copied, setCopied] = useState(false)
+
+  function copyEmail() {
+    navigator.clipboard?.writeText(profile.email).then(() => {
+      setCopied(true)
+      setTimeout(() => setCopied(false), 1600)
+    })
+  }
+
+  const linkedinLabel = (profile.linkedin || '').replace(/^https?:\/\/(www\.)?/, '')
+  const githubLabel = (profile.github || '').replace(/^https?:\/\/(www\.)?/, '')
+
   return (
     <main className="page container">
       <Reveal>
@@ -13,15 +26,24 @@ export default function Contact() {
         <p className="section-sub">
           Open to internships and entry roles in data analytics, data engineering, and software development.
         </p>
+        {profile.status && (
+          <span className="contact-status"><span className="cs-dot" />{profile.status}</span>
+        )}
       </Reveal>
 
       <div className="contact-grid">
         <Reveal delay={100}>
           <div className="clay contact-card">
             <p className="eyebrow">direct</p>
-            <a className="c-row" href={`mailto:${profile.email}`}>
-              <span className="c-label">Email</span><span>{profile.email}</span>
-            </a>
+            <div className="c-row c-email">
+              <span className="c-label">Email</span>
+              <span className="c-email-val">
+                {profile.email}
+                <button className="c-copy" onClick={copyEmail} title="Copy email">
+                  {copied ? '✓ copied' : 'copy'}
+                </button>
+              </span>
+            </div>
             <div className="c-row">
               <span className="c-label">Phone</span><span>{profile.phone}</span>
             </div>
@@ -34,10 +56,10 @@ export default function Contact() {
           <div className="clay contact-card">
             <p className="eyebrow">profiles</p>
             <a className="c-row" href={profile.github} target="_blank" rel="noreferrer">
-              <span className="c-label">GitHub</span><span>github.com/angelinetipa</span>
+              <span className="c-label">GitHub</span><span>{githubLabel}</span>
             </a>
             <a className="c-row" href={profile.linkedin} target="_blank" rel="noreferrer">
-              <span className="c-label">LinkedIn</span><span>linkedin.com/in/maatipa</span>
+              <span className="c-label">LinkedIn</span><span>{linkedinLabel}</span>
             </a>
           </div>
         </Reveal>
@@ -45,8 +67,24 @@ export default function Contact() {
 
       <Reveal delay={300}>
         <div className="contact-cta">
-          <a className="btn btn-primary" href={`https://mail.google.com/mail/?view=cm&fs=1&to=${profile.email}`} target="_blank" rel="noreferrer">Send me an email →</a>
-          {profile.cv && <a className="btn btn-ghost" href={profile.cv} target="_blank" rel="noreferrer" style={{ marginLeft: 12 }}>Download CV ↓</a>}
+          <a
+            className="btn btn-primary"
+            href={`https://mail.google.com/mail/?view=cm&fs=1&to=${profile.email}`}
+            target="_blank"
+            rel="noreferrer"
+          >
+            Send me an email →
+          </a>
+          {profile.resume && (
+            <a className="btn btn-ghost" href={profile.resume} target="_blank" rel="noreferrer">
+              Resume (PDF)
+            </a>
+          )}
+          {profile.cv && (
+            <a className="btn btn-ghost" href={profile.cv} target="_blank" rel="noreferrer">
+              Full CV ↓
+            </a>
+          )}
         </div>
       </Reveal>
     </main>

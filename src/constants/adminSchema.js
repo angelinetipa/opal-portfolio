@@ -35,6 +35,7 @@ export const collections = {
       { key: 'issuer', label: 'Issuer', type: 'text' },
       { key: 'year', label: 'Year', type: 'text', placeholder: '2025' },
       { key: 'image', label: 'Image', type: 'image' },
+      { key: 'link', label: 'Verify URL (optional)', type: 'text', placeholder: 'https://...' },
     ],
   },
   artworks: {
