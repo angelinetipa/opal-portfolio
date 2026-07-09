@@ -38,7 +38,7 @@ export default function Projects() {
               tabIndex={0}
               onKeyDown={e => { if (e.key === 'Enter') setActive(p) }}
             >
-              <BrowserFrame src={p.image} alt={p.title} url={p.live} />
+              <BrowserFrame src={p.image} alt={p.title} url={p.live} fit={p.fit} />
 
               <div className="proj-body">
                 <p className="proj-sub">{p.subtitle}</p>

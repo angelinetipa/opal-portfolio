@@ -44,9 +44,9 @@ export default function Navbar({ theme, onToggleTheme }) {
               href={profile.resume}
               target="_blank"
               rel="noreferrer"
-              title="Open résumé (PDF)"
+              title="Open resume (PDF)"
             >
-              Résumé
+              Resume
             </a>
           )}
           <button

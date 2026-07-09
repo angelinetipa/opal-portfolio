@@ -21,13 +21,16 @@ export const profile = {
   phone: '0928 372 6099',
   linkedin: 'https://www.linkedin.com/in/maatipa',
   github: 'https://github.com/angelinetipa',
+  photo: null, // set to '/profile.webp' after adding public/profile.webp
   resume: '/resume.pdf', // drop your PDF at public/resume.pdf
   targets: ['Software Developer', 'Data Engineer', 'Data Analyst', 'QA Engineer'],
 };
 
 export const stats = [
-  { value: '2026', label: 'BSCpE — graduating Sept' },
-  { value: 'DOST', label: 'JLSS Scholar' },
+  { value: '3', label: 'Deployed live apps' },
+  { value: '27M+', label: 'Learner records analyzed' },
+  { value: '1.07', label: 'GWA — 4th year' },
+  { value: '4', label: 'Industry certifications' },
 ];
 
 // Grouped toolkit — no fake percentages, just what she actually works with.
@@ -43,9 +46,9 @@ export const toolkit = [
     items: ['React', 'React Native', 'Expo', 'TypeScript', 'Vite', 'Supabase', 'Django', 'Git & GitHub'],
   },
   {
-    group: 'Testing, Systems & Hardware',
+    group: 'Testing & Hardware',
     icon: '▲',
-    items: ['Manual QA', 'Test-case design', 'Vitest', 'GitHub Actions', 'C / C++', 'Arduino', 'Networking', 'AutoCAD'],
+    items: ['Manual QA', 'Test design', 'Vitest', 'GitHub Actions', 'C / C++', 'Arduino', 'Networking', 'AutoCAD'],
   },
 ];
 
@@ -109,7 +112,8 @@ export const projects = [
       'Cross-platform app controlling an ESP32 machine that turns fish-scale waste into bioplastic across four automated stages. Built with React Native + Expo (SDK 54) and Supabase realtime (RLS, subscriptions) for live machine status and remote command control. Modular, production-style codebase with a custom design system and scripted Demo Mode; shipped to web (Vercel) and Android (EAS Build).',
     tags: ['React Native', 'Expo', 'Supabase', 'ESP32', 'IoT'],
     accent: 'teal',
-    image: '/projects/biofish.webp',
+    fit: 'contain', // phone screenshot → show whole image on gradient
+    image: 'projects/biofish.webp',
     live: 'https://biofish-control.vercel.app',
     repo: 'https://github.com/angelinetipa/biofish-control',
   },
@@ -122,7 +126,7 @@ export const projects = [
       'Rebuilt a Big Data course activity from scratch into a deployed dashboard analyzing a public DepEd dataset — 60,000+ schools, 27M+ learners. Runs DuckDB-WASM (real SQL) fully in-browser with no server; a Python/pandas pipeline cleans raw Excel into Parquet. Cascading Region → Barangay filters, auto-generated findings, and optional plain-English-to-SQL (BYOK AI).',
     tags: ['DuckDB-WASM', 'React', 'TypeScript', 'Python', 'Pandas'],
     accent: 'blue',
-    image: '/projects/aralite.webp',
+    image: 'projects/aralite.webp',
     live: 'https://aralite.vercel.app',
     repo: 'https://github.com/angelinetipa/aralite',
   },
@@ -135,7 +139,7 @@ export const projects = [
       'Capture-first notes/tasks app with AI auto-triage (type, tags, summary, topic), a weekly AI digest, and an insights dashboard. Built with React Native + Expo and Supabase (Postgres, Auth, RLS), BYOK Groq/Gemini. CI runs lint → typecheck → test via GitHub Actions.',
     tags: ['React Native', 'Expo', 'Supabase', 'AI (Groq/Gemini)', 'CI'],
     accent: 'violet',
-    image: '/projects/fyropy.webp',
+    image: 'projects/fyropy.webp',
     live: 'https://fyropy.vercel.app',
     repo: 'https://github.com/angelinetipa/fyropy',
   },

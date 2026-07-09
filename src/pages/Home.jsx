@@ -6,12 +6,10 @@ import {
   stats as seedStats,
   toolkit as seedToolkit,
   education as seedEducation,
-  experience as seedExp,
   projects as seedProj,
 } from '../constants/data.js'
 import { useContent } from '../lib/useContent.js'
 import { useCollection } from '../lib/useCollection.js'
-import { useCount } from '../lib/useCount.js'
 import './Home.css'
 
 const glow = { teal: 'glow-teal', blue: 'glow-blue', violet: 'glow-violet' }
@@ -22,16 +20,10 @@ export default function Home() {
   const { value: toolkit } = useContent('toolkit', seedToolkit)
   const { value: education } = useContent('education', seedEducation)
   const { rows: projects } = useCollection('projects', seedProj)
-  const expCount = useCount('experience', seedExp.length)
-  const projCount = useCount('projects', seedProj.length)
 
   const featured = projects.filter(p => (p.category || 'featured') !== 'coursework').slice(0, 3)
 
-  const displayStats = [
-    { value: String(expCount), label: 'Internships / work experiences' },
-    { value: String(projCount), label: 'Academic & personal projects' },
-    ...stats,
-  ]
+  const displayStats = stats
 
   return (
     <main className="page">
@@ -39,10 +31,12 @@ export default function Home() {
       <section className="container hero">
         <div className="hero-text">
           <Reveal>
-            <p className="eyebrow">SELECT * FROM portfolio WHERE owner = 'angeline';</p>
             {profile.status && (
-              <span className="hero-status"><span className="hs-dot" />{profile.status}</span>
+              <div className="hero-status-row">
+                <span className="hero-status"><span className="hs-dot" />{profile.status}</span>
+              </div>
             )}
+            <p className="eyebrow">SELECT * FROM portfolio WHERE owner = 'angeline';</p>
           </Reveal>
           <Reveal delay={80}>
             <h1 className="hero-title">
@@ -65,7 +59,7 @@ export default function Home() {
             <div className="hero-cta">
               <Link to="/projects" className="btn btn-primary">View projects →</Link>
               {profile.resume && (
-                <a href={profile.resume} target="_blank" rel="noreferrer" className="btn btn-ghost">Résumé (PDF)</a>
+                <a href={profile.resume} target="_blank" rel="noreferrer" className="btn btn-ghost">Resume (PDF)</a>
               )}
               <Link to="/contact" className="btn btn-ghost">Get in touch</Link>
             </div>
@@ -114,7 +108,7 @@ export default function Home() {
             {featured.map((p, i) => (
               <Reveal key={p.id || i} delay={i * 110}>
                 <article className={`clay clay-hover ${glow[p.accent] || 'glow-teal'} sel-card`}>
-                  <BrowserFrame src={p.image} alt={p.title} url={p.live} />
+                  <BrowserFrame src={p.image} alt={p.title} url={p.live} fit={p.fit} />
                   <div className="sel-body">
                     <p className="sel-sub">{p.subtitle}</p>
                     <h3>{p.title}</h3>

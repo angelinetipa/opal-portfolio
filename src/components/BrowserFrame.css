@@ -50,3 +50,20 @@
   font-size: 0.78rem;
   color: var(--text-dim);
 }
+
+/* contain mode: whole (portrait/phone) image visible on a soft opal gradient */
+.bf-contain {
+  background:
+    radial-gradient(120% 130% at 15% 10%, rgba(79, 141, 255, 0.16), transparent 55%),
+    radial-gradient(120% 130% at 85% 90%, rgba(139, 108, 246, 0.16), transparent 55%),
+    var(--bg-soft);
+  padding: 14px;
+}
+.bf-contain img {
+  width: auto;
+  height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+  border-radius: 10px;
+  box-shadow: 0 8px 26px rgba(0, 0, 0, 0.35);
+}
