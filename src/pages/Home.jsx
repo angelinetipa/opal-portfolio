@@ -3,7 +3,6 @@ import Reveal from '../components/Reveal.jsx'
 import BrowserFrame from '../components/BrowserFrame.jsx'
 import {
   profile as seedProfile,
-  stats as seedStats,
   toolkit as seedToolkit,
   education as seedEducation,
   projects as seedProj,
@@ -16,14 +15,11 @@ const glow = { teal: 'glow-teal', blue: 'glow-blue', violet: 'glow-violet' }
 
 export default function Home() {
   const { value: profile } = useContent('profile', seedProfile)
-  const { value: stats } = useContent('stats', seedStats)
   const { value: toolkit } = useContent('toolkit', seedToolkit)
   const { value: education } = useContent('education', seedEducation)
   const { rows: projects } = useCollection('projects', seedProj)
 
   const featured = projects.filter(p => (p.category || 'featured') !== 'coursework').slice(0, 3)
-
-  const displayStats = stats
 
   return (
     <main className="page">
@@ -82,18 +78,6 @@ export default function Home() {
             </div>
           </div>
         </Reveal>
-      </section>
-
-      {/* ============ STATS ============ */}
-      <section className="container stats">
-        {displayStats.map((s, i) => (
-          <Reveal key={s.label} delay={i * 90}>
-            <div className="stat clay clay-hover glow-teal">
-              <span className="stat-value opal-text">{s.value}</span>
-              <span className="stat-label">{s.label}</span>
-            </div>
-          </Reveal>
-        ))}
       </section>
 
       {/* ============ SELECTED WORK ============ */}

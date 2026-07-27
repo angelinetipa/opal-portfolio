@@ -68,7 +68,7 @@
 .stat-label { font-size: 0.8rem; color: var(--text-dim); }
 
 /* SELECTED WORK */
-.selected { margin-bottom: 24px; padding-top: 40px; }
+.selected { margin-bottom: 24px; padding-top: 70px; }
 .sel-grid { margin-top: 28px; }
 .sel-card { overflow: hidden; display: flex; flex-direction: column; height: 100%; }
 .sel-body { padding: 20px 22px 22px; display: flex; flex-direction: column; gap: 8px; flex: 1; }

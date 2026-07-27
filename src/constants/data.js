@@ -27,13 +27,6 @@ export const profile = {
   targets: ['Software Developer', 'Data Engineer', 'Data Analyst', 'QA Engineer'],
 };
 
-export const stats = [
-  { value: '3', label: 'Deployed live apps' },
-  { value: '27M+', label: 'Learner records analyzed' },
-  { value: '1.07', label: 'GWA — 4th year' },
-  { value: '4', label: 'Industry certifications' },
-];
-
 // Grouped toolkit — no fake percentages, just what she actually works with.
 export const toolkit = [
   {

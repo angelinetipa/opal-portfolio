@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { supabase } from '../../lib/supabase.js'
 import { saveContent } from '../../lib/useContent.js'
 import {
-  profile as seedProfile, stats as seedStats, toolkit as seedToolkit,
+  profile as seedProfile, toolkit as seedToolkit,
   education as seedEducation, awards as seedAwards,
 } from '../../constants/data.js'
 import FieldInput from './FieldInput.jsx'
@@ -41,7 +41,6 @@ export default function SettingsEditor() {
   const [profile, setProfile] = useState(seedProfile)
   const [aboutText, setAboutText] = useState('')      // about[] as newline text
   const [targetsText, setTargetsText] = useState('')  // targets[] as csv text
-  const [stats, setStats] = useState(seedStats)
   const [toolkit, setToolkit] = useState([])          // items[] held as csv strings
   const [education, setEducation] = useState(seedEducation)
   const [awards, setAwards] = useState(seedAwards)
@@ -49,9 +48,8 @@ export default function SettingsEditor() {
 
   useEffect(() => {
     async function load() {
-      const [p, s, t, e, a] = await Promise.all([
+      const [p, t, e, a] = await Promise.all([
         fetchContent('profile', seedProfile),
-        fetchContent('stats', seedStats),
         fetchContent('toolkit', seedToolkit),
         fetchContent('education', seedEducation),
         fetchContent('awards', seedAwards),
@@ -59,7 +57,6 @@ export default function SettingsEditor() {
       setProfile(p)
       setAboutText((p.about || []).join('\n\n'))
       setTargetsText((p.targets || []).join(', '))
-      setStats(s)
       setToolkit((t || []).map(g => ({ ...g, items: (g.items || []).join(', ') })))
       setEducation(e)
       setAwards(a)
@@ -107,19 +104,6 @@ export default function SettingsEditor() {
           <textarea rows={6} value={aboutText} onChange={e => setAboutText(e.target.value)} /></label>
         <label className="fi"><span>Target roles (comma separated)</span>
           <input value={targetsText} onChange={e => setTargetsText(e.target.value)} /></label>
-      </Section>
-
-      {/* STATS */}
-      <Section title="Stats (homepage)" onSave={() => saveContent('stats', stats)}>
-        <ObjectListEditor
-          items={stats}
-          onChange={setStats}
-          fields={[
-            { key: 'value', label: 'Value', placeholder: '10+' },
-            { key: 'label', label: 'Label', placeholder: 'Projects' },
-          ]}
-          addLabel="+ Add stat"
-        />
       </Section>
 
       {/* TOOLKIT */}
