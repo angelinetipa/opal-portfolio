@@ -10,6 +10,8 @@ import {
 import { useContent } from '../lib/useContent.js'
 import { useCollection } from '../lib/useCollection.js'
 import './Home.css'
+import ScrollCue from '../components/ScrollCue.jsx'
+import '../components/ScrollCue.css'
 
 const glow = { teal: 'glow-teal', blue: 'glow-blue', violet: 'glow-violet' }
 
@@ -78,6 +80,7 @@ export default function Home() {
             </div>
           </div>
         </Reveal>
+        <ScrollCue />
       </section>
 
       {/* ============ SELECTED WORK ============ */}

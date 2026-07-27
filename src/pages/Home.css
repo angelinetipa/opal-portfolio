@@ -110,3 +110,4 @@
 .tk-items { display: flex; flex-wrap: wrap; gap: 8px; align-content: flex-start; }
 .tk-card { display: flex; flex-direction: column; }
 .tk-items { flex: 1; }
+.hero { position: relative; }
