@@ -194,12 +194,14 @@ export const projects = [
 
 export const certificates = [
   // Add the image later: image: '/certs/filename.jpg'
-  { id: 'c1', title: 'CCNA: Introduction to Networks', issuer: 'Cisco Networking Academy', year: '2026', image: '/certs/ccna.webp' },
-  { id: 'c2', title: 'Associate Data Analyst', issuer: 'DataCamp', year: '2026', image: '/certs/ada.webp' },
-  { id: 'c3', title: 'Power BI Fundamentals', issuer: 'DataCamp', year: '2026', image: '/certs/pbi.webp' },
-  { id: 'c4', title: 'HCCDA – GaussDB', issuer: 'Huawei ICT Academy', year: '2025', image: '/certs/gaussdb.webp' },
-  { id: 'c5', title: 'Project LODI — OJT Completion (300 hrs)', issuer: 'DOST Central Office – ITD', year: '2025', image: '/certs/lodi.webp' }, 
-  { id: 'c6', title: 'MIS Internship Completion (300 hrs)', issuer: 'Local Government of Cavite', year: '2024', image: '/certs/lgu.webp' },
+  { id: 'c1', title: 'CCNA: Introduction to Networks', issuer: 'Cisco Networking Academy', year: '2025', image: '/certs/ccna.webp' },
+  { id: 'c2', title: 'Python Data Fundamentals (7-course track)', issuer: 'DataCamp', year: '2026', image: '/certs/python-data.jpeg' },
+  { id: 'c3', title: 'GitHub Foundations (4-course track)', issuer: 'DataCamp', year: '2025', image: '/certs/github-foundations.jpeg' },
+  { id: 'c4', title: 'Intermediate SQL', issuer: 'DataCamp', year: '2026', image: '/certs/intermediate-sql.jpeg' },
+  { id: 'c5', title: 'Introduction to Excel', issuer: 'DataCamp', year: '2026', image: '/certs/excel.jpeg' },
+  { id: 'c6', title: 'HCCDA – GaussDB', issuer: 'Huawei ICT Academy', year: '2025', image: '/certs/gaussdb.webp' },
+  { id: 'c7', title: 'Project LODI — OJT Completion (300 hrs)', issuer: 'DOST Central Office – ITD', year: '2025', image: '/certs/lodi.webp' },
+  { id: 'c8', title: 'MIS Internship Completion (300 hrs)', issuer: 'Local Government of Cavite', year: '2024', image: '/certs/lgu.webp' },
 ];
 
 export const awards = [
@@ -233,7 +235,7 @@ export const artworks = [
 export const education = [
   {
     school: 'Polytechnic University of the Philippines',
-    degree: 'BS Computer Engineering — Big Data · GWA 1.07',
+    degree: 'BS Computer Engineering — Big Data · GWA 1.50',
     period: '2022 – 2026',
   },
   {
