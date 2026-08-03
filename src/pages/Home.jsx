@@ -13,6 +13,7 @@ import './Home.css'
 import ScrollCue from '../components/ScrollCue.jsx'
 import '../components/ScrollCue.css'
 import SocialLinks from '../components/SocialLinks.jsx'
+import Credentials from '../components/Credentials.jsx'
 
 const glow = { teal: 'glow-teal', blue: 'glow-blue', violet: 'glow-violet' }
 
@@ -152,6 +153,7 @@ export default function Home() {
           </Reveal>
         </div>
       </section>
+      <Credentials />
 
       {/* ============ TOOLKIT ============ */}
       <section className="container skills">
