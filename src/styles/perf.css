@@ -1,0 +1,115 @@
+/* ============================================
+   PERF — paint & scroll optimisations
+   Import AFTER global.css so these win.
+   Purely additive: no visual redesign, just
+   cheaper rendering on mid-range laptops/phones.
+   ============================================ */
+
+/* --------------------------------------------
+   1. Blobs & glows are the #1 cost.
+   Large blurred elements repaint every frame.
+   Promote them to their own layer so the
+   browser animates them on the GPU instead of
+   re-rasterising the whole hero.
+   -------------------------------------------- */
+.opal-blob,
+.hero-gem {
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  contain: layout paint style;
+  pointer-events: none;
+}
+
+/* --------------------------------------------
+   2. Below-the-fold sections skip rendering
+   until they scroll near the viewport.
+   contain-intrinsic-size reserves height so the
+   scrollbar never jumps.
+   -------------------------------------------- */
+.selected,
+.about,
+.skills {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 700px;
+}
+
+/* --------------------------------------------
+   3. Reveal: animate only transform + opacity.
+   Anything else (height, filter, box-shadow)
+   forces layout on every frame.
+   -------------------------------------------- */
+.reveal {
+  transition-property: opacity, transform;
+  transition-duration: 0.55s;
+  transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* once revealed, drop the layer hint so we
+   don't hold GPU memory for every section */
+.reveal.in {
+  will-change: auto;
+}
+
+/* --------------------------------------------
+   4. Images: never let an un-sized image cause
+   a reflow mid-scroll.
+   -------------------------------------------- */
+.hero-photo img,
+.sel-card img,
+.bf-shot img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  content-visibility: auto;
+}
+
+/* --------------------------------------------
+   5. Touch devices: hover transforms are dead
+   weight and cause sticky-hover on tap.
+   -------------------------------------------- */
+@media (hover: none) {
+  .clay-hover:hover,
+  .sel-card:hover,
+  .float-card:hover {
+    transform: none;
+  }
+}
+
+/* --------------------------------------------
+   6. Mobile: blur is expensive. Cut the veil
+   and stop blob animation entirely.
+   -------------------------------------------- */
+@media (max-width: 880px) {
+  .opal-blob,
+  .hero-gem {
+    animation: none !important;
+    filter: blur(40px);
+    opacity: 0.55;
+  }
+
+  .float-card {
+    backdrop-filter: none;
+  }
+}
+
+/* --------------------------------------------
+   7. Respect the user's motion setting.
+   Also an instant accessibility win.
+   -------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

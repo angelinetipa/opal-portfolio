@@ -12,6 +12,7 @@ import { useCollection } from '../lib/useCollection.js'
 import './Home.css'
 import ScrollCue from '../components/ScrollCue.jsx'
 import '../components/ScrollCue.css'
+import SocialLinks from '../components/SocialLinks.jsx'
 
 const glow = { teal: 'glow-teal', blue: 'glow-blue', violet: 'glow-violet' }
 
@@ -61,6 +62,9 @@ export default function Home() {
               )}
               <Link to="/contact" className="btn btn-ghost">Get in touch</Link>
             </div>
+          </Reveal>
+          <Reveal delay={360}>
+            <SocialLinks profile={profile} />
           </Reveal>
         </div>
 

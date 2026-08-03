@@ -1,0 +1,89 @@
+/* ============================================
+   SOCIAL LINKS — hero icon row
+   Uses existing Black Opal tokens only.
+   ============================================ */
+
+.sociallinks {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.sl-btn {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 14px;
+  color: var(--text-dim);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  box-shadow: var(--clay-shadow-soft);
+  transition:
+    color 0.18s ease,
+    transform 0.18s ease,
+    border-color 0.18s ease;
+}
+
+.sl-btn svg {
+  width: 18px;
+  height: 18px;
+  display: block;
+}
+
+.sl-btn:hover,
+.sl-btn:focus-visible {
+  color: var(--text);
+  transform: translateY(-3px);
+  border-color: color-mix(in srgb, var(--opal-teal) 45%, transparent);
+}
+
+.sl-btn:focus-visible {
+  outline: 2px solid var(--opal-blue);
+  outline-offset: 3px;
+}
+
+/* tiny label on hover */
+.sl-tip {
+  position: absolute;
+  bottom: -26px;
+  left: 50%;
+  transform: translateX(-50%) translateY(4px);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.04em;
+  color: var(--text-dim);
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    opacity 0.18s ease,
+    transform 0.18s ease;
+}
+
+.sl-btn:hover .sl-tip,
+.sl-btn:focus-visible .sl-tip {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sl-btn,
+  .sl-tip {
+    transition: none;
+  }
+  .sl-btn:hover {
+    transform: none;
+  }
+}
+
+@media (max-width: 880px) {
+  .sociallinks {
+    margin-top: 18px;
+  }
+  .sl-tip {
+    display: none;
+  }
+}
