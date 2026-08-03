@@ -69,7 +69,7 @@ export default function Contact() {
         <div className="contact-cta">
           <a
             className="btn btn-primary"
-            href={`https://mail.google.com/mail/?view=cm&fs=1&to=${profile.email}`}
+            href={composeUrl(profile.email)}
             target="_blank"
             rel="noreferrer"
           >

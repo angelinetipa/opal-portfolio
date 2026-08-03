@@ -1,3 +1,4 @@
+import { composeUrl } from '../lib/mail.js'
 import './SocialLinks.css'
 
 /* Inline SVGs — no icon library, no extra dependency, no layout shift. */
@@ -33,7 +34,7 @@ export default function SocialLinks({ profile = {}, className = '' }) {
     profile.email && {
       key: 'mail',
       label: 'Email',
-      href: `mailto:${profile.email}`,
+      href: composeUrl(profile.email),
     },
   ].filter(Boolean)
 
@@ -46,7 +47,7 @@ export default function SocialLinks({ profile = {}, className = '' }) {
           key={l.key}
           className="sl-btn"
           href={l.href}
-          target={l.key === 'mail' ? undefined : '_blank'}
+          target="_blank"
           rel="noreferrer"
           aria-label={l.label}
           title={l.label}

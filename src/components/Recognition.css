@@ -1,0 +1,145 @@
+/* ============================================
+   RECOGNITION — grouped awards
+   Uses existing Black Opal tokens only.
+   ============================================ */
+
+.recognition {
+  padding-top: 72px;
+  margin-bottom: 24px;
+}
+
+.rc-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 22px;
+  margin-top: 28px;
+  align-items: stretch;
+}
+
+.rc-grid > .reveal {
+  height: 100%;
+}
+
+.rc-card {
+  padding: 26px 24px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.rc-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+
+.rc-icon {
+  font-size: 0.9rem;
+  color: var(--opal-teal);
+}
+
+.rc-head h3 {
+  font-size: 1.02rem;
+}
+
+.rc-note {
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: var(--text-dim);
+  opacity: 0.75;
+  margin-bottom: 16px;
+}
+
+/* ---------- items ---------- */
+.rc-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  flex: 1;
+}
+
+.rc-item {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.rc-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.rc-item-main {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+
+.rc-title {
+  font-weight: 600;
+  font-size: 0.92rem;
+  line-height: 1.4;
+}
+
+.rc-detail {
+  font-size: 0.78rem;
+  line-height: 1.45;
+  color: var(--text-dim);
+}
+
+.rc-year {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--text-dim);
+  white-space: nowrap;
+  flex-shrink: 0;
+  padding-top: 2px;
+}
+
+/* ---------- toggle ---------- */
+.rc-toggle-row {
+  display: flex;
+  justify-content: center;
+  margin-top: 26px;
+}
+
+.rc-toggle {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-dim);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 9px 20px;
+  cursor: pointer;
+  transition:
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.rc-toggle:hover {
+  color: var(--text);
+  border-color: color-mix(in srgb, var(--opal-teal) 45%, transparent);
+}
+
+/* ---------- responsive ---------- */
+@media (max-width: 880px) {
+  .recognition {
+    padding-top: 56px;
+  }
+
+  .rc-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .rc-card {
+    padding: 22px 20px;
+  }
+}

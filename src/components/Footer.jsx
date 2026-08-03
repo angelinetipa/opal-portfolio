@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { profile as seedProfile } from '../constants/data.js'
 import { useContent } from '../lib/useContent.js'
 import './Footer.css'
+import { composeUrl } from '../lib/mail.js'
 
 export default function Footer() {
   const { value: profile } = useContent('profile', seedProfile)
@@ -13,8 +14,7 @@ export default function Footer() {
         <div className="footer-links">
           <a href={profile.github} target="_blank" rel="noreferrer">GitHub</a>
           <a href={profile.linkedin} target="_blank" rel="noreferrer">LinkedIn</a>
-          <a href={`mailto:${profile.email}`}>Email</a>
-          <Link to="/admin" className="footer-admin" title="Admin">•</Link>
+          <a href={composeUrl(profile.email)} target="_blank" rel="noreferrer">Email</a>          <Link to="/admin" className="footer-admin" title="Admin">•</Link>
         </div>
       </div>
     </footer>

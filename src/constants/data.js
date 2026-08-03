@@ -204,13 +204,6 @@ export const certificates = [
   { id: 'c8', title: 'MIS Internship Completion (300 hrs)', issuer: 'Local Government of Cavite', year: '2024', image: '/certs/lgu.webp' },
 ];
 
-export const awards = [
-  'DOST–JLSS Scholar — competitive scholarship exam (2024)',
-  'BIO-FISH — Top 8 Finalist, APEAR Prototyping Exhibit (2026)',
-  '1st Place, Feature Writing (DSPC) · RSPC delegate (2015)',
-  'Arnis medalist — Solo Baston & Combative events (2017)',
-];
-
 export const artworks = [
   {
     id: 'a1',

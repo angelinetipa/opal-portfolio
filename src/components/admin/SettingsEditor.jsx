@@ -3,7 +3,7 @@ import { supabase } from '../../lib/supabase.js'
 import { saveContent } from '../../lib/useContent.js'
 import {
   profile as seedProfile, toolkit as seedToolkit,
-  education as seedEducation, awards as seedAwards,
+  education as seedEducation,
 } from '../../constants/data.js'
 import FieldInput from './FieldInput.jsx'
 import ObjectListEditor from './ObjectListEditor.jsx'
@@ -43,16 +43,14 @@ export default function SettingsEditor() {
   const [targetsText, setTargetsText] = useState('')  // targets[] as csv text
   const [toolkit, setToolkit] = useState([])          // items[] held as csv strings
   const [education, setEducation] = useState(seedEducation)
-  const [awards, setAwards] = useState(seedAwards)
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     async function load() {
-      const [p, t, e, a] = await Promise.all([
+      const [p, t, e] = await Promise.all([
         fetchContent('profile', seedProfile),
         fetchContent('toolkit', seedToolkit),
         fetchContent('education', seedEducation),
-        fetchContent('awards', seedAwards),
       ])
       setProfile(p)
       setAboutText((p.about || []).join('\n\n'))
@@ -137,11 +135,6 @@ export default function SettingsEditor() {
           ]}
           addLabel="+ Add school"
         />
-      </Section>
-
-      {/* AWARDS */}
-      <Section title="Awards & highlights" onSave={() => saveContent('awards', awards.filter(Boolean))}>
-        <StringListEditor items={awards} onChange={setAwards} placeholder="Award name (year)" addLabel="+ Add award" />
       </Section>
     </div>
   )

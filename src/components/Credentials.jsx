@@ -1,28 +1,21 @@
 import { Link } from 'react-router-dom'
 import Reveal from './Reveal.jsx'
-import {
-  certificates as seedCerts,
-  awards as seedAwards,
-} from '../constants/data.js'
+import { certificates as seedCerts } from '../constants/data.js'
+import { featuredRecognition } from '../constants/recognition.js'
 import { useCollection } from '../lib/useCollection.js'
-import { useContent } from '../lib/useContent.js'
 import './Credentials.css'
 
 /**
  * Compact credentials block for the Home page.
- * Certifications on the left, awards on the right.
- * Both capped at `limit` — the full list lives on its own page.
+ * Certifications on the left, headline recognition on the right.
+ * The full grouped recognition list lives on the Experience page.
  */
 export default function Credentials({ limit = 5 }) {
   const { rows: certs } = useCollection('certificates', seedCerts)
-  const { value: awards } = useContent('awards', seedAwards)
 
   const allCerts = certs || []
-  const allAwards = Array.isArray(awards) ? awards : []
-
   const shownCerts = allCerts.slice(0, limit)
-  const shownAwards = allAwards.slice(0, limit)
-  const moreAwards = allAwards.length - shownAwards.length
+  const shownAwards = featuredRecognition.slice(0, 4)
 
   if (shownCerts.length === 0 && shownAwards.length === 0) return null
 
@@ -67,27 +60,29 @@ export default function Credentials({ limit = 5 }) {
           </Reveal>
         )}
 
-        {/* ---------- AWARDS ---------- */}
+        {/* ---------- RECOGNITION ---------- */}
         {shownAwards.length > 0 && (
           <Reveal delay={180}>
-            <div className="clay cred-card cred-awards">
+            <div className="clay cred-card">
               <div className="cred-head">
-                <h3>Awards &amp; honors</h3>
-                <span className="cred-count">{allAwards.length}</span>
+                <h3>Recognition</h3>
               </div>
 
-              <ul className="award-list">
-                {shownAwards.map((a, i) => (
-                  <li key={i} className="award-row">
-                    <span className="award-mark" aria-hidden="true" />
-                    <span>{a}</span>
+              <ul className="cred-list">
+                {shownAwards.map(a => (
+                  <li key={a.title} className="cred-row">
+                    <div className="cred-row-main">
+                      <span className="cred-title">{a.title}</span>
+                      <span className="cred-issuer">{a.detail}</span>
+                    </div>
+                    {a.year && <span className="cred-year">{a.year}</span>}
                   </li>
                 ))}
               </ul>
 
-              {moreAwards > 0 && (
-                <p className="cred-note">+{moreAwards} more in my CV</p>
-              )}
+              <Link to="/experience" className="cred-more">
+                See the full record →
+              </Link>
             </div>
           </Reveal>
         )}

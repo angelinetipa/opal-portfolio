@@ -1,23 +1,25 @@
 import Reveal from '../components/Reveal.jsx'
-import { experience as seedExp, awards as seedAwards } from '../constants/data.js'
+import Recognition from '../components/Recognition.jsx'
+import { experience as seedExp } from '../constants/data.js'
 import { useCollection } from '../lib/useCollection.js'
-import { useContent } from '../lib/useContent.js'
 import './Experience.css'
 
 export default function Experience() {
   const { rows: experience } = useCollection('experience', seedExp)
-  const { value: awards } = useContent('awards', seedAwards)
+
   return (
     <main className="page container">
       <Reveal>
         <p className="eyebrow">ORDER BY date DESC</p>
         <h2 className="section-title">Experience</h2>
-        <p className="section-sub">Internships and work — QA, IT support, full-stack builds, and data records.</p>
+        <p className="section-sub">
+          Internships and work — QA, IT support, full-stack builds, and data records.
+        </p>
       </Reveal>
 
       <div className="timeline">
         {experience.map((e, i) => (
-          <Reveal key={i} delay={i * 120}>
+          <Reveal key={e.id || i} delay={i * 120}>
             <article className="t-item">
               <div className="t-dot opal-blob" aria-hidden="true" />
               <div className="clay clay-hover glow-blue t-card">
@@ -40,14 +42,9 @@ export default function Experience() {
         ))}
       </div>
 
-      <Reveal>
-        <div className="clay awards">
-          <p className="eyebrow">awards & highlights</p>
-          <ul className="awards-list">
-            {awards.map(a => <li key={a}>{a}</li>)}
-          </ul>
-        </div>
-      </Reveal>
+      {/* Grouped awards — replaces the old flat "awards & highlights" list.
+          Earlier 2015–2018 honors stay collapsed until asked for. */}
+      <Recognition />
     </main>
   )
 }
