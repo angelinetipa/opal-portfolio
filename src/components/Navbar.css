@@ -30,17 +30,6 @@
 }
 .nav-actions { display: flex; align-items: center; gap: 10px; }
 
-/* résumé button */
-.resume-btn {
-  padding: 9px 18px; border-radius: 999px;
-  font-size: 0.85rem; font-weight: 700;
-  color: var(--text); background: var(--surface-2);
-  border: 1px solid var(--line);
-  box-shadow: var(--clay-shadow-soft);
-  transition: box-shadow 0.3s ease, transform 0.2s ease, color 0.25s;
-}
-.resume-btn:hover { color: var(--opal-teal); box-shadow: var(--clay-shadow-soft), var(--glow-teal); transform: translateY(-1px); }
-
 .theme-btn {
   width: 42px; height: 42px; border-radius: 50%;
   border: 1px solid var(--line);
@@ -70,8 +59,4 @@
   .nav-links.open { opacity: 1; pointer-events: auto; transform: translateX(-50%) translateY(0); }
   .nav-links a { display: block; }
   .burger { display: flex; }
-}
-
-@media (max-width: 420px) {
-  .resume-btn { display: none; } /* résumé still in hero on mobile */
 }

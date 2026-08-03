@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { NavLink } from 'react-router-dom'
-import { profile } from '../constants/data.js'
 import { openConsole } from './CommandConsole.jsx'
 import './Navbar.css'
 
@@ -39,6 +38,8 @@ export default function Navbar({ theme, onToggleTheme }) {
         </ul>
 
         <div className="nav-actions">
+          {/* Resume lives in the hero, the contact page, and the console,
+              so the nav keeps a single quiet utility instead of two pills. */}
           <button
             className="cc-navbtn"
             onClick={() => { setOpen(false); openConsole() }}
@@ -50,17 +51,6 @@ export default function Navbar({ theme, onToggleTheme }) {
             <kbd className="cc-kbd">⌘K</kbd>
           </button>
 
-          {profile.resume && (
-            <a
-              className="resume-btn"
-              href={profile.resume}
-              target="_blank"
-              rel="noreferrer"
-              title="Open resume (PDF)"
-            >
-              Resume
-            </a>
-          )}
           <button
             className="theme-btn"
             onClick={onToggleTheme}
@@ -69,6 +59,7 @@ export default function Navbar({ theme, onToggleTheme }) {
           >
             {theme === 'dark' ? '☀' : '☾'}
           </button>
+
           <button className="burger" onClick={() => setOpen(o => !o)} aria-label="Menu">
             <span /><span /><span />
           </button>
