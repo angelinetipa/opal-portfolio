@@ -52,16 +52,14 @@
 }
 
 /* --------------------------------------------
-   4. Images: never let an un-sized image cause
-   a reflow mid-scroll.
+   4. Images: skip decoding off-screen shots.
+   NOTE: sizing/fit is intentionally left to the
+   existing component CSS — portrait mockups
+   (like the BIO-FISH phone shot) must not be
+   forced to fill their frame.
    -------------------------------------------- */
-.hero-photo img,
 .sel-card img,
 .bf-shot img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
   content-visibility: auto;
 }
 
