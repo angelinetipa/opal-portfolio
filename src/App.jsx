@@ -11,6 +11,7 @@ import Certificates from './pages/Certificates.jsx'
 import Gallery from './pages/Gallery.jsx'
 import Contact from './pages/Contact.jsx'
 import Admin from './pages/Admin.jsx'
+import CommandConsole from './components/CommandConsole.jsx'
 
 export default function App() {
   const [theme, setTheme] = useState(() => localStorage.getItem('theme') || 'dark')
@@ -37,6 +38,7 @@ export default function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/admin" element={<Admin />} />
       </Routes>
+      <CommandConsole />
       <Footer />
     </>
   )
