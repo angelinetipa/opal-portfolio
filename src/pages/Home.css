@@ -81,23 +81,49 @@
 /* small buttons (shared look with Projects) */
 .btn-sm { padding: 7px 14px; font-size: 0.82rem; }
 
-/* ABOUT */
+/* ABOUT
+   Even columns: the narrower text column wraps earlier and grows
+   taller, so the card and the copy end up close in height without
+   any fragile fixed matching. */
 .about { margin-bottom: 72px; padding-top: 64px; }
 .skills { padding-top: 40px; }
-.about-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 36px; margin-top: 28px; }
-.about-copy p { color: var(--text-dim); margin-bottom: 16px; font-size: 1.02rem; max-width: 62ch; }
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 36px;
+  margin-top: 28px;
+  align-items: stretch;
+}
+
+/* Reveal wraps each column, so it needs the height to pass through */
+.about-grid > .reveal { height: 100%; }
+
+.about-copy {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.about-copy p { color: var(--text-dim); margin-bottom: 16px; font-size: 1.02rem; }
+.about-copy p:last-child { margin-bottom: 0; }
 
 /* EDUCATION
    Vertical rhythm — the period sits above the school instead of
    fighting it for width, so long school names stop wrapping badly. */
-.edu-card { padding: 30px 28px; }
+.edu-card {
+  padding: 30px 28px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
 
 .edu-row {
   display: block;
   padding: 20px 0;
   border-bottom: 1px solid var(--line);
 }
-.edu-row:first-child { padding-top: 0; }
+.edu-row:first-of-type { padding-top: 0; }
 .edu-row:last-child { border-bottom: none; padding-bottom: 0; }
 
 .edu-period {
@@ -149,5 +175,6 @@
   .fc-2 { bottom: 4%; right: -2%; }
   .stats { grid-template-columns: repeat(2, 1fr); }
   .about-grid, .skill-list { grid-template-columns: 1fr; }
+  .about-copy { justify-content: flex-start; }
   .edu-card { padding: 24px 20px; }
 }

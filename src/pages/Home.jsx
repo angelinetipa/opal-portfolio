@@ -129,7 +129,7 @@ export default function Home() {
       <section className="container about">
         <Reveal>
           <p className="eyebrow">about_me.describe()</p>
-          <h2 className="section-title">Careful work, with a fingerprint.</h2>
+          <h2 className="section-title">Build it. Then make it good.</h2>
         </Reveal>
         <div className="about-grid">
           <Reveal delay={100}>
