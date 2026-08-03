@@ -17,7 +17,8 @@ export default function CollectionEditor({ table, schema }) {
       .select('*')
       .order('sort_order', { ascending: true })
       .order('created_at', { ascending: true })
-    if (!error) setRows(data || [])
+    setRows(error ? [] : (data || []))
+    if (error) setMsg('Could not load: ' + error.message)
     setLoading(false)
   }
 

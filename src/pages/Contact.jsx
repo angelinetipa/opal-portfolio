@@ -2,17 +2,19 @@ import { useState } from 'react'
 import Reveal from '../components/Reveal.jsx'
 import { profile as seedProfile } from '../constants/data.js'
 import { useContent } from '../lib/useContent.js'
+import { composeUrl, copyEmail } from '../lib/mail.js'
 import './Contact.css'
 
 export default function Contact() {
   const { value: profile } = useContent('profile', seedProfile)
   const [copied, setCopied] = useState(false)
 
-  function copyEmail() {
-    navigator.clipboard?.writeText(profile.email).then(() => {
-      setCopied(true)
-      setTimeout(() => setCopied(false), 1600)
-    })
+  // mail.js owns *how* to copy; this component owns how it looks.
+  async function handleCopy() {
+    const ok = await copyEmail(profile.email)
+    if (!ok) return
+    setCopied(true)
+    setTimeout(() => setCopied(false), 1600)
   }
 
   const linkedinLabel = (profile.linkedin || '').replace(/^https?:\/\/(www\.)?/, '')
@@ -24,7 +26,8 @@ export default function Contact() {
         <p className="eyebrow">INSERT INTO opportunities</p>
         <h2 className="section-title">Let's work together.</h2>
         <p className="section-sub">
-          Open to internships and entry roles in data analytics, data engineering, and software development.
+          Open to entry-level roles in software development, data engineering,
+          data analytics, and QA.
         </p>
         {profile.status && (
           <span className="contact-status"><span className="cs-dot" />{profile.status}</span>
@@ -39,7 +42,7 @@ export default function Contact() {
               <span className="c-label">Email</span>
               <span className="c-email-val">
                 {profile.email}
-                <button className="c-copy" onClick={copyEmail} title="Copy email">
+                <button className="c-copy" onClick={handleCopy} title="Copy email">
                   {copied ? '✓ copied' : 'copy'}
                 </button>
               </span>
@@ -52,6 +55,7 @@ export default function Contact() {
             </div>
           </div>
         </Reveal>
+
         <Reveal delay={200}>
           <div className="clay contact-card">
             <p className="eyebrow">profiles</p>

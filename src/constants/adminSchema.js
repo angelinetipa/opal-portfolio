@@ -46,7 +46,8 @@ export const collections = {
       { key: 'title', label: 'Award / role', type: 'text', required: true },
       { key: 'detail', label: 'Detail', type: 'text', placeholder: 'Level, organizer, or context' },
       { key: 'year', label: 'Year', type: 'text', placeholder: '2026' },
-      { key: 'group', label: 'Group (which card it appears under)', type: 'select', options: groupOptions },
+      // `group` is reserved in SQL — the column is group_name.
+      { key: 'group_name', label: 'Group (which card it appears under)', type: 'select', options: groupOptions },
       { key: 'featured', label: 'Show on Home? (max 4)', type: 'select', options: ['no', 'yes'] },
       { key: 'earlier', label: 'Hide behind "earlier honors"?', type: 'select', options: ['no', 'yes'] },
     ],
