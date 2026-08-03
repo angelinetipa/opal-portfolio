@@ -141,12 +141,11 @@ export default function Home() {
             <div className="clay edu-card">
               <p className="eyebrow" style={{ marginBottom: 18 }}>education</p>
               {education.map(e => (
-                <div key={e.school} className="edu-row">
-                  <div>
-                    <strong>{e.school}</strong>
-                    <p className="edu-degree">{e.degree}</p>
-                  </div>
-                  <span className="chip">{e.period}</span>
+                <div className="edu-row" key={e.school}>
+                  <span className="edu-period">{e.period}</span>
+                  <strong className="edu-school">{e.school}</strong>
+                  <p className="edu-degree">{e.degree}</p>
+                  {e.note && <p className="edu-note">{e.note}</p>}
                 </div>
               ))}
             </div>

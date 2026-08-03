@@ -235,12 +235,14 @@ export const artworks = [
 export const education = [
   {
     school: 'Polytechnic University of the Philippines',
-    degree: 'BS Computer Engineering — Big Data · GWA 1.50',
+    degree: 'BS Computer Engineering — Big Data · GWA 1.50 · DOST–JLSS Scholar',
     period: '2022 – 2026',
+    note: 'Media Head — Software Engineering Day 2026 (ASCEND), 3-day CpE symposium',
   },
   {
     school: 'Cavite National High School',
     degree: 'STE (Junior HS) · STEM (Senior HS) — GPA 95',
     period: '2016 – 2022',
+    note: 'YES-O Officer (3 years) · academic, journalism, and science contests to regional level',
   },
 ];
