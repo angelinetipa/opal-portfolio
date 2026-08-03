@@ -2,6 +2,8 @@
 // Field types: text, textarea, lines (one item per line → array),
 // csv (comma separated → array), select, image (upload).
 
+import { groupOptions } from './recognition.js'
+
 export const collections = {
   experience: {
     label: 'Experience',
@@ -38,6 +40,17 @@ export const collections = {
       { key: 'link', label: 'Verify URL (optional)', type: 'text', placeholder: 'https://...' },
     ],
   },
+  recognition: {
+    label: 'Recognition',
+    fields: [
+      { key: 'title', label: 'Award / role', type: 'text', required: true },
+      { key: 'detail', label: 'Detail', type: 'text', placeholder: 'Level, organizer, or context' },
+      { key: 'year', label: 'Year', type: 'text', placeholder: '2026' },
+      { key: 'group', label: 'Group (which card it appears under)', type: 'select', options: groupOptions },
+      { key: 'featured', label: 'Show on Home? (max 4)', type: 'select', options: ['no', 'yes'] },
+      { key: 'earlier', label: 'Hide behind "earlier honors"?', type: 'select', options: ['no', 'yes'] },
+    ],
+  },
   artworks: {
     label: 'Art',
     fields: [
@@ -48,4 +61,10 @@ export const collections = {
   },
 }
 
-export const collectionOrder = ['experience', 'projects', 'certificates', 'artworks']
+export const collectionOrder = [
+  'experience',
+  'projects',
+  'certificates',
+  'recognition',
+  'artworks',
+]

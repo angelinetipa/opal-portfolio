@@ -1,21 +1,22 @@
 import { Link } from 'react-router-dom'
 import Reveal from './Reveal.jsx'
 import { certificates as seedCerts } from '../constants/data.js'
-import { featuredRecognition } from '../constants/recognition.js'
+import { recognitionSeed, featuredRecognition } from '../constants/recognition.js'
 import { useCollection } from '../lib/useCollection.js'
 import './Credentials.css'
 
 /**
  * Compact credentials block for the Home page.
  * Certifications on the left, headline recognition on the right.
- * The full grouped recognition list lives on the Experience page.
+ * The full grouped list lives on the Experience page.
  */
 export default function Credentials({ limit = 5 }) {
   const { rows: certs } = useCollection('certificates', seedCerts)
+  const { rows: recognition } = useCollection('recognition', recognitionSeed)
 
   const allCerts = certs || []
   const shownCerts = allCerts.slice(0, limit)
-  const shownAwards = featuredRecognition.slice(0, 4)
+  const shownAwards = featuredRecognition(recognition || []).slice(0, 4)
 
   if (shownCerts.length === 0 && shownAwards.length === 0) return null
 
@@ -70,10 +71,10 @@ export default function Credentials({ limit = 5 }) {
 
               <ul className="cred-list">
                 {shownAwards.map(a => (
-                  <li key={a.title} className="cred-row">
+                  <li key={a.id || a.title} className="cred-row">
                     <div className="cred-row-main">
                       <span className="cred-title">{a.title}</span>
-                      <span className="cred-issuer">{a.detail}</span>
+                      {a.detail && <span className="cred-issuer">{a.detail}</span>}
                     </div>
                     {a.year && <span className="cred-year">{a.year}</span>}
                   </li>

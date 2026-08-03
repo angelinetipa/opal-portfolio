@@ -1,6 +1,11 @@
 import { useState } from 'react'
 import Reveal from './Reveal.jsx'
-import { recognition } from '../constants/recognition.js'
+import {
+  recognitionSeed,
+  groupRecognition,
+  earlierCount,
+} from '../constants/recognition.js'
+import { useCollection } from '../lib/useCollection.js'
 import './Recognition.css'
 
 function Item({ item }) {
@@ -10,25 +15,20 @@ function Item({ item }) {
         <span className="rc-title">{item.title}</span>
         {item.detail && <span className="rc-detail">{item.detail}</span>}
       </div>
-      <span className="rc-year">{item.year}</span>
+      {item.year && <span className="rc-year">{item.year}</span>}
     </li>
   )
 }
 
 export default function Recognition() {
+  const { rows } = useCollection('recognition', recognitionSeed)
   const [showEarlier, setShowEarlier] = useState(false)
 
-  // Groups that still have something to show once earlier items are hidden
-  const visible = recognition
-    .map(g => ({
-      ...g,
-      items: showEarlier ? g.items : g.items.filter(i => !i.earlier),
-    }))
-    .filter(g => g.items.length > 0)
+  const all = rows || []
+  const groups = groupRecognition(all, showEarlier)
+  const hidden = earlierCount(all)
 
-  const earlierCount = recognition
-    .flatMap(g => g.items)
-    .filter(i => i.earlier).length
+  if (groups.length === 0) return null
 
   return (
     <section className="recognition">
@@ -41,17 +41,17 @@ export default function Recognition() {
       </Reveal>
 
       <div className="rc-grid">
-        {visible.map((g, i) => (
+        {groups.map((g, i) => (
           <Reveal key={g.id} delay={i * 90}>
             <div className="clay rc-card">
               <div className="rc-head">
                 <span className="rc-icon" aria-hidden="true">{g.icon}</span>
-                <h3>{g.group}</h3>
+                <h3>{g.label}</h3>
               </div>
               {g.note && <p className="rc-note">{g.note}</p>}
               <ul className="rc-list">
                 {g.items.map(item => (
-                  <Item key={item.title} item={item} />
+                  <Item key={item.id || item.title} item={item} />
                 ))}
               </ul>
             </div>
@@ -59,7 +59,7 @@ export default function Recognition() {
         ))}
       </div>
 
-      {earlierCount > 0 && (
+      {hidden > 0 && (
         <Reveal>
           <div className="rc-toggle-row">
             <button
@@ -69,7 +69,7 @@ export default function Recognition() {
             >
               {showEarlier
                 ? '− Hide earlier honors'
-                : `+ Show ${earlierCount} earlier honors (2015–2018)`}
+                : `+ Show ${hidden} earlier honors`}
             </button>
           </div>
         </Reveal>
