@@ -1,50 +1,45 @@
 /* ============================================
-   COMMAND CONSOLE — "Ask about me" (⌘K)
+   COMMAND CONSOLE — "Ask about me" (Cmd/Ctrl + K)
+   Trigger lives inside the navbar.
    Uses existing Black Opal tokens only.
    ============================================ */
 
-/* ---------- floating trigger ---------- */
-.cc-trigger {
-  position: fixed;
-  right: 22px;
-  bottom: 22px;
-  z-index: 60;
+/* ---------- navbar trigger pill ---------- */
+.cc-navbtn {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 11px 16px;
+  gap: 8px;
+  padding: 7px 12px;
   border-radius: 999px;
   border: 1px solid var(--line);
-  background: var(--surface);
+  background: var(--bg-soft);
   color: var(--text-dim);
-  box-shadow: var(--clay-shadow);
   font-family: var(--font-mono);
-  font-size: 0.8rem;
+  font-size: 0.76rem;
   cursor: pointer;
+  white-space: nowrap;
   transition:
     color 0.2s ease,
-    transform 0.2s ease,
     border-color 0.2s ease;
 }
 
-.cc-trigger:hover {
+.cc-navbtn:hover {
   color: var(--text);
-  transform: translateY(-2px);
   border-color: color-mix(in srgb, var(--opal-teal) 45%, transparent);
 }
 
-.cc-trigger-icon {
-  font-size: 1rem;
+.cc-navbtn-icon {
+  font-size: 0.95rem;
   color: var(--opal-teal);
+  line-height: 1;
 }
 
 .cc-kbd {
   font-family: var(--font-mono);
-  font-size: 0.68rem;
-  padding: 2px 7px;
-  border-radius: 6px;
+  font-size: 0.66rem;
+  padding: 1px 6px;
+  border-radius: 5px;
   border: 1px solid var(--line);
-  background: var(--bg-soft);
   color: var(--text-dim);
 }
 
@@ -272,22 +267,22 @@
 }
 
 /* ---------- responsive ---------- */
-@media (max-width: 700px) {
-  .cc-trigger {
-    right: 16px;
-    bottom: 16px;
-    padding: 11px 14px;
-  }
-
-  .cc-trigger-text,
+@media (max-width: 900px) {
+  .cc-navbtn-text,
   .cc-kbd {
     display: none;
   }
 
-  .cc-trigger-icon {
-    font-size: 1.15rem;
+  .cc-navbtn {
+    padding: 7px 9px;
   }
 
+  .cc-navbtn-icon {
+    font-size: 1.05rem;
+  }
+}
+
+@media (max-width: 700px) {
   .cc-overlay {
     padding: 8vh 12px 12px;
   }
@@ -305,8 +300,5 @@
   .cc-overlay,
   .cc-panel {
     animation: none;
-  }
-  .cc-trigger:hover {
-    transform: none;
   }
 }

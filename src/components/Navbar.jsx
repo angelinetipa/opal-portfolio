@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import { profile } from '../constants/data.js'
+import { openConsole } from './CommandConsole.jsx'
 import './Navbar.css'
 
 const links = [
@@ -38,6 +39,17 @@ export default function Navbar({ theme, onToggleTheme }) {
         </ul>
 
         <div className="nav-actions">
+          <button
+            className="cc-navbtn"
+            onClick={() => { setOpen(false); openConsole() }}
+            aria-label="Ask about Angeline"
+            title="Ask about me (Ctrl/Cmd + K)"
+          >
+            <span className="cc-navbtn-icon" aria-hidden="true">⌕</span>
+            <span className="cc-navbtn-text">Ask about me</span>
+            <kbd className="cc-kbd">⌘K</kbd>
+          </button>
+
           {profile.resume && (
             <a
               className="resume-btn"
