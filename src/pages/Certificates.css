@@ -34,9 +34,3 @@
 .cert-body { padding: 18px 22px 22px; }
 .cert-body h3 { font-size: 1rem; margin-bottom: 4px; }
 .cert-body p { font-size: 0.8rem; color: var(--text-dim); font-family: var(--font-mono); }
-.cert-verify {
-  display: inline-block; margin-top: 12px;
-  font-family: var(--font-mono); font-size: 0.76rem; font-weight: 600;
-  color: var(--opal-teal);
-}
-.cert-verify:hover { text-decoration: underline; }

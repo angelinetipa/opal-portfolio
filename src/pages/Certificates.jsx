@@ -38,11 +38,6 @@ export default function Certificates() {
               <div className="cert-body">
                 <h3>{c.title}</h3>
                 <p>{c.issuer} · {c.year}</p>
-                {c.link && (
-                  <a className="cert-verify" href={c.link} target="_blank" rel="noreferrer">
-                    Verify ↗
-                  </a>
-                )}
               </div>
             </article>
           </Reveal>
