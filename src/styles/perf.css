@@ -17,25 +17,11 @@
   will-change: transform;
   transform: translateZ(0);
   backface-visibility: hidden;
-  contain: layout paint style;
   pointer-events: none;
 }
 
 /* --------------------------------------------
-   2. Below-the-fold sections skip rendering
-   until they scroll near the viewport.
-   contain-intrinsic-size reserves height so the
-   scrollbar never jumps.
-   -------------------------------------------- */
-.selected,
-.about,
-.skills {
-  content-visibility: auto;
-  contain-intrinsic-size: auto 700px;
-}
-
-/* --------------------------------------------
-   3. Reveal: animate only transform + opacity.
+   2. Reveal: animate only transform + opacity.
    Anything else (height, filter, box-shadow)
    forces layout on every frame.
    -------------------------------------------- */
@@ -52,19 +38,16 @@
 }
 
 /* --------------------------------------------
-   4. Images: skip decoding off-screen shots.
-   NOTE: sizing/fit is intentionally left to the
-   existing component CSS — portrait mockups
-   (like the BIO-FISH phone shot) must not be
-   forced to fill their frame.
+   NOTE — deliberately NOT used here:
+   `content-visibility` and `contain: paint`.
+   Both apply paint containment, which clips the
+   opal glow that intentionally spills outside
+   the cards. The lag fix is not worth the
+   broken shadows.
    -------------------------------------------- */
-.sel-card img,
-.bf-shot img {
-  content-visibility: auto;
-}
 
 /* --------------------------------------------
-   5. Touch devices: hover transforms are dead
+   3. Touch devices: hover transforms are dead
    weight and cause sticky-hover on tap.
    -------------------------------------------- */
 @media (hover: none) {
@@ -76,7 +59,7 @@
 }
 
 /* --------------------------------------------
-   6. Mobile: blur is expensive. Cut the veil
+   4. Mobile: blur is expensive. Cut the veil
    and stop blob animation entirely.
    -------------------------------------------- */
 @media (max-width: 880px) {
@@ -93,7 +76,7 @@
 }
 
 /* --------------------------------------------
-   7. Respect the user's motion setting.
+   5. Respect the user's motion setting.
    Also an instant accessibility win.
    -------------------------------------------- */
 @media (prefers-reduced-motion: reduce) {

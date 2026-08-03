@@ -19,7 +19,7 @@ export const profile = {
   location: 'Cavite City, Philippines',
   email: 'angelinetipa@gmail.com',
   phone: '0928 372 6099',
-  linkedin: 'https://www.linkedin.com/in/maatipa',
+  linkedin: 'https://www.linkedin.com/in/angelinetipa',
   github: 'https://github.com/angelinetipa',
   photo: '/profile.webp', // set to '/profile.webp' after adding public/profile.webp
   resume: '/resume.pdf', // drop your PDF at public/resume.pdf
