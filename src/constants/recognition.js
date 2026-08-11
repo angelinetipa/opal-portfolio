@@ -78,7 +78,7 @@ export const recognitionSeed = [
   {
     id: 'r-apear',
     title: 'BIO-FISH — Top 8 Finalist',
-    detail: 'Capstone machine, team of 4 · 4th Annual Prototyping Exhibit, Awards & Recognition (APEAR) · I led development of its control app',
+    detail: 'Capstone machine, team of 4 · 4th Annual Prototyping Exhibit, Awards & Recognition (APEAR)',
     year: '2026',
     group_name: 'rigor',
     featured: 'yes',
