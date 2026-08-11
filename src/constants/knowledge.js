@@ -11,6 +11,9 @@
 //                         Supabase, Django, C/C++, Arduino
 // Do not promote anything between tiers without updating the CV too.
 //
+// RULE: every answer must survive a follow-up question in an
+// interview. If it can't be defended out loud, it doesn't go here.
+//
 // Fields:
 //   keys  → words a visitor might type. Lowercase.
 //   q     → the suggested question shown in the list.
@@ -48,21 +51,21 @@ export const answers = [
     id: 'skills',
     q: 'What are her technical skills?',
     keys: ['skill', 'skills', 'stack', 'tech', 'technology', 'tools', 'know', 'languages'],
-    a: `Proficient: Python, SQL, HTML/CSS. Working knowledge (AI-assisted, shipped projects): TypeScript/JavaScript, React, React Native with Expo, Supabase, Django, C/C++, Arduino. She tiers these honestly instead of listing everything as expert.`,
+    a: `Proficient: Python, SQL, HTML/CSS. Working knowledge (AI-assisted, shipped projects): TypeScript/JavaScript, React, React Native with Expo, Supabase, Django, C/C++, Arduino. On the testing side: manual test-case design, Jest, Vitest, Playwright, and GitHub Actions CI. She tiers these honestly instead of listing everything as expert.`,
     link: { label: 'See projects', to: '/projects' },
   },
   {
     id: 'sql',
     q: 'How strong is her SQL?',
     keys: ['sql', 'database', 'databases', 'postgres', 'query', 'duckdb', 'mysql', 'gaussdb', 'db', 'replication'],
-    a: `Proficient — one of her two strongest languages. Used in Aralite, which runs real SQL in the browser over 27M learner records, and in Supabase Postgres with row-level security. Also built Master–Master and Master–Slave MySQL replication for coursework. Certified: Intermediate SQL (DataCamp) and HCCDA–GaussDB (Huawei ICT Academy).`,
+    a: `Proficient — one of her two strongest languages. Used in Aralite, which runs real SQL in the browser over a DepEd dataset of 60,171 schools reshaped into 3.5 million rows, and in Supabase Postgres with row-level security. Also built Master–Master and Master–Slave MySQL replication for coursework. Certified: Intermediate SQL (DataCamp) and HCCDA–GaussDB (Huawei ICT Academy).`,
     link: { label: 'View Aralite', href: 'https://aralite.vercel.app' },
   },
   {
     id: 'python',
     q: 'How strong is her Python?',
-    keys: ['python', 'pandas', 'numpy', 'matplotlib', 'seaborn', 'pyspark', 'script', 'data'],
-    a: `Proficient. Used for data work with pandas, NumPy, Matplotlib, Seaborn and PySpark, for cleaning raw Excel into Parquet, and for object-oriented coursework covering file handling, sorting and encryption. Completed the 7-course Python Data Fundamentals track at DataCamp.`,
+    keys: ['python', 'pandas', 'numpy', 'matplotlib', 'seaborn', 'pyspark', 'script', 'data', 'cleaning', 'pipeline'],
+    a: `Proficient. Used for data work with pandas, NumPy, Matplotlib, Seaborn and PySpark, and for the Aralite cleaning pipeline that turns raw government Excel into Parquet — repairing encoding damage, standardizing text, validating enrollment values, and writing a quality report that proves no rows were lost. Also object-oriented coursework covering file handling, sorting and encryption. Completed the 7-course Python Data Fundamentals track at DataCamp.`,
   },
   {
     id: 'frontend',
@@ -94,15 +97,23 @@ export const answers = [
   {
     id: 'qa',
     q: 'Does she have QA or testing experience?',
-    keys: ['qa', 'test', 'testing', 'tester', 'quality', 'assurance', 'bug', 'bugs', 'vitest', 'debug', 'manual'],
-    a: `Yes — three months as a Quality Assurance trainee at DOST–CO-PES (Project LODI). She wrote and revised test cases for two government web systems, DIMT and ISSP, from screen design specifications, executed functional tests across Admin and Agency Focal roles in a VPN-secured environment, and logged structured pass/fail reports. Bugs she found included Ñ/ñ special-character handling, input-validation gaps, UI misalignments and broken redirects.`,
+    keys: ['qa', 'test', 'testing', 'tester', 'quality', 'assurance', 'bug', 'bugs', 'debug', 'manual'],
+    a: `Yes — three months as a Quality Assurance trainee at DOST–CO-PES (Project LODI). She wrote and revised test cases for two government web systems, DIMT and ISSP, from screen design specifications, executed functional tests across Admin and Agency Focal roles in a VPN-secured environment, and logged structured pass/fail reports. Bugs she found included Ñ/ñ special-character handling, input-validation gaps, UI misalignments and broken redirects. She carries the same habit into her own projects — every screen is checked for its loading, empty, error and normal states before it ships.`,
     link: { label: 'See experience', to: '/experience' },
   },
   {
     id: 'automation',
     q: 'Can she do automated testing?',
-    keys: ['automation', 'automated', 'ci', 'pipeline', 'unit', 'github actions', 'coverage'],
-    a: `On her own projects, yes. Aralite has Vitest unit tests running through GitHub Actions CI on every push. Her professional QA experience so far is manual test-case design and execution, which she is honest about — automation is something she is building on her own.`,
+    keys: ['automation', 'automated', 'ci', 'pipeline', 'unit', 'e2e', 'end-to-end', 'jest', 'vitest', 'playwright', 'github actions', 'coverage'],
+    a: `Yes, on her own projects. Fyropy is tested at three levels: unit tests with Jest for pure logic, integration tests with React Native Testing Library for hooks and stateful components, and end-to-end tests with Playwright driving a real browser. Aralite has Vitest unit tests over its cleaning rules. Both run through GitHub Actions on every push and pull request, so a failing check blocks the merge. Her professional QA experience so far is manual test-case design and execution — the automation is self-taught, and she is honest about which is which.`,
+    link: { label: 'See projects', to: '/projects' },
+  },
+  {
+    id: 'docs',
+    q: 'How does she document her work?',
+    keys: ['document', 'documentation', 'readme', 'docs', 'write', 'writing', 'notes', 'comment', 'comments'],
+    a: `Every repository follows the same README structure — what it is, how to try it, how it works, how to run it locally, how to change it, and an honest list of what is unfinished or untested. Fyropy also carries a test plan documenting the state audit for each screen, and a plain-language walkthrough of how every part works. She states limits in writing rather than hiding them, because a stated limit is engineering judgment and a hidden one is a problem someone else finds.`,
+    link: { label: 'Open GitHub', href: 'https://github.com/angelinetipa' },
   },
 
   // ---------- PROJECTS ----------
@@ -117,21 +128,21 @@ export const answers = [
     id: 'biofish',
     q: 'What is BIO-FISH?',
     keys: ['biofish', 'bio-fish', 'fish', 'capstone', 'thesis', 'bioplastic', 'esp32', 'iot', 'android'],
-    a: `Her 2026 capstone, as lead developer. A cross-platform app controlling an ESP32 machine that turns fish-scale waste into bioplastic across four automated stages, using React Native with Expo and Supabase realtime for live status and remote commands. Shipped to web on Vercel and to Android via EAS Build. It also has a scripted Demo Mode that simulates a full production run without hardware. Named a Top 8 finalist at the APEAR 2026 prototyping exhibit.`,
+    a: `BIO-FISH is a machine that turns fish-scale waste into bioplastic across four automated stages, built by her four-person capstone team and named a Top 8 finalist at the APEAR 2026 prototyping exhibit. Angeline led development of its control app, which was built separately for a Software Design course — one piece of work serving two requirements. The app is React Native with Expo, and models machine commands as a Supabase Postgres queue rather than a status flag, so a dropped WiFi connection can never leave the machine acting on an old command. Shipped to web on Vercel and Android via EAS Build, with a no-login demo mode that runs a full simulated cycle without hardware.`,
     link: { label: 'Open BIO-FISH', href: 'https://biofish-control.vercel.app' },
   },
   {
     id: 'aralite',
     q: 'What is Aralite?',
-    keys: ['aralite', 'dashboard', 'analytics', 'deped', 'enrollment', 'parquet', 'charts', 'recharts'],
-    a: `A self-learning project that rebuilt a Big Data course activity into a deployed dashboard on a public DepEd dataset — 60,000+ schools and 27M learners. It runs real SQL in the browser with DuckDB-WASM so no server is needed, cleans raw Excel into Parquet with Python and pandas, filters from region down to barangay, and turns plain English questions into SQL. Built with React, TypeScript, Vite and Recharts, unit-tested with Vitest and checked by GitHub Actions CI.`,
+    keys: ['aralite', 'dashboard', 'analytics', 'deped', 'enrollment', 'parquet', 'charts', 'recharts', 'duckdb'],
+    a: `A self-learning project that rebuilt a Big Data course activity into a deployed dashboard on a public DepEd dataset — 60,171 schools covering 27M learners. A Python and pandas pipeline turns raw Excel into Parquet, reshaping 58 enrollment columns into 3.5 million rows with nothing dropped, and writes a quality report proving it. The browser then runs real SQL over that data with DuckDB-WASM, so there is no server and no database bill. Filters run from region down to barangay, and it can turn plain English questions into SQL. Built with React, TypeScript, Vite and Recharts, unit-tested with Vitest and checked by GitHub Actions CI.`,
     link: { label: 'Open Aralite', href: 'https://aralite.vercel.app' },
   },
   {
     id: 'fyropy',
     q: 'What is Fyropy?',
     keys: ['fyropy', 'second brain', 'notes', 'triage', 'capture', 'tasks'],
-    a: `A capture-first notes and tasks app with AI auto-triage for type, tags, summary and topic, plus a weekly digest and an insights dashboard. Built with React Native, Expo and Supabase using bring-your-own-key Groq or Gemini. Includes undo-delete, keyboard shortcuts, live search, priority and due-date filters, and CSV/JSON export.`,
+    a: `A notes and tasks app where AI sorts each capture into a type, tags, a summary and a topic group, using the visitor's own Groq or Gemini key. Built with React Native, Expo, TypeScript strict, and Supabase for Postgres, auth and row-level security. Writes are optimistic — the screen updates first and rolls back if the save fails — which is exactly what the hook tests exist to prove. Tested with Jest, React Native Testing Library and Playwright; GitHub Actions runs lint, typecheck and tests on every pull request.`,
     link: { label: 'Open Fyropy', href: 'https://fyropy.vercel.app' },
   },
 
@@ -158,7 +169,7 @@ export const answers = [
   {
     id: 'certs',
     q: 'What certifications does she hold?',
-    keys: ['cert', 'certs', 'certificate', 'certification', 'ccna', 'datacamp', 'cisco', 'huawei', 'training', 'course'],
+    keys: ['cert', 'certs', 'certificate', 'certification', 'ccna', 'datacamp', 'cisco', 'huawei', 'training'],
     a: `CCNA: Introduction to Networks from Cisco Networking Academy, HCCDA–GaussDB from Huawei ICT Academy, and DataCamp tracks in Python Data Fundamentals, GitHub Foundations, Intermediate SQL and Introduction to Excel.`,
     link: { label: 'View certificates', to: '/certificates' },
   },
@@ -174,13 +185,13 @@ export const answers = [
     id: 'strength',
     q: 'What are her strengths?',
     keys: ['strength', 'strengths', 'good', 'best', 'why', 'stand out', 'different'],
-    a: `Precision and follow-through. She catches inconsistencies fast, keeps clean file structure with no shortcuts, and is honest with data — flagging what is unconfirmed instead of filling gaps. Her QA background means she looks for what breaks before shipping. She also builds with a visual identity, so her work does not look generic.`,
+    a: `Precision and follow-through. She catches inconsistencies fast, keeps clean file structure with no shortcuts, and is honest with data — flagging what is unconfirmed instead of filling gaps. Her QA background means she looks for what breaks before shipping, and she writes down what a project cannot do rather than leaving someone to discover it. She also builds with a visual identity, so her work does not look generic.`,
   },
   {
     id: 'weakness',
     q: 'What is she working on improving?',
     keys: ['weakness', 'weaknesses', 'improve', 'growth', 'struggle', 'weak', 'learning'],
-    a: `Communication and presenting. She is more comfortable building than speaking, so she is deliberately practicing writing things up clearly — this answer bank is part of that. On the technical side she is currently building depth in Power BI and test automation.`,
+    a: `Communication and presenting. She is more comfortable building than speaking, so she is deliberately practicing writing things up clearly — this answer bank is part of that. On the technical side, her end-to-end test coverage is still thin compared to her unit tests, and widening it is the next thing on her list.`,
   },
   {
     id: 'style',

@@ -4,6 +4,10 @@
 // this instantly, then upgrades from Supabase if the admin has
 // saved newer content. Keep this file current so the site is
 // complete even if Supabase is ever asleep.
+//
+// RULE: after editing anything through /admin, mirror the change
+// back into this file. Otherwise a paused database serves stale
+// content with no warning.
 // ============================================================
 
 export const profile = {
@@ -13,7 +17,8 @@ export const profile = {
   status: 'Graduating Sept 2026 · open to work',
   tagline: 'A careful, design-conscious engineer who finishes things properly.',
   about: [
-    `I'm a graduating Computer Engineering student at the Polytechnic University of the Philippines (Big Data), and lead developer of BIO-FISH — my capstone: a machine that turns fish-scale waste into bioplastic. But how I work matters more than any one project. I'm detail-obsessed, honest with data — I flag what's unconfirmed instead of faking numbers — and disciplined: small steps, clean structure, no shortcuts.`,
+    `I'm a graduating Computer Engineering student at the Polytechnic University of the Philippines, majoring in Big Data. I led development of the control app for BIO-FISH, our capstone machine that turns fish-scale waste into bioplastic — and I've shipped three more projects on my own since. But how I work matters more than any one of them.`,
+    `My QA foundation comes from a DOST internship writing and executing test cases for two government web systems. That's the habit I carry everywhere: check the empty state, check the error state, check the thing nobody thought to try. I'm honest with data — I flag what's unconfirmed instead of filling the gap with a number that looks better.`,
     `I work the way modern engineers do: AI-assisted, but judgment-led. The skill I trust isn't building from memory — it's knowing what's worth building, catching when an output is wrong, and structuring it cleanly. INFP heart, Scorpio precision: quietly competitive, creative with constraints, and self-aware enough to mark what I don't know instead of pretending I do.`,
   ],
   location: 'Cavite City, Philippines',
@@ -21,9 +26,9 @@ export const profile = {
   phone: '0928 372 6099',
   linkedin: 'https://www.linkedin.com/in/angelinetipa',
   github: 'https://github.com/angelinetipa',
-  photo: '/profile.webp', // set to '/profile.webp' after adding public/profile.webp
-  resume: '/resume.pdf', // drop your PDF at public/resume.pdf
-  cv: '/cv.pdf',         // drop your CV PDF at public/cv.pdf
+  photo: '/profile.webp',
+  resume: '/resume.pdf',
+  cv: '/cv.pdf',
   targets: ['Software Developer', 'Data Engineer', 'Data Analyst', 'QA Engineer'],
 };
 
@@ -42,7 +47,7 @@ export const toolkit = [
   {
     group: 'Testing & Hardware',
     icon: '▲',
-    items: ['Manual QA', 'Test design', 'Vitest', 'GitHub Actions', 'C / C++', 'Arduino', 'Networking', 'AutoCAD'],
+    items: ['Manual QA', 'Test design', 'Jest', 'Vitest', 'Playwright', 'GitHub Actions', 'C / C++', 'Arduino'],
   },
 ];
 
@@ -95,15 +100,18 @@ export const experience = [
 // category: 'featured'  → main grid + Home "Selected work"
 // category: 'coursework'→ collapsed "Coursework & fundamentals"
 // live / repo: shown as buttons on the card and in the modal
+//
+// Every claim here must survive an interview. State what the
+// project is, one decision behind it, and what shipped.
 // ------------------------------------------------------------
 export const projects = [
   {
     id: 'biofish',
-    title: 'BIO-FISH v2 — IoT Control App',
-    subtitle: 'Capstone thesis · Lead Developer',
+    title: 'BIO-FISH — IoT Control App',
+    subtitle: 'Capstone team of 4 · Lead Developer (app)',
     category: 'featured',
     description:
-      'Cross-platform app controlling an ESP32 machine that turns fish-scale waste into bioplastic across four automated stages. Built with React Native + Expo (SDK 54) and Supabase realtime (RLS, subscriptions) for live machine status and remote command control. Modular, production-style codebase with a custom design system and scripted Demo Mode; shipped to web (Vercel) and Android (EAS Build).',
+      'React Native (Expo) app controlling our capstone ESP32 machine, which turns fish-scale waste into bioplastic across four automated stages. Machine commands are modelled as a Supabase Postgres queue rather than a status flag, so a dropped WiFi connection can never leave the machine acting on an old command. Shipped to web (Vercel) and Android (EAS Build), with a no-login demo mode that runs a full simulated cycle — no hardware needed. The machine itself was a team effort and a Top 8 finalist at APEAR 2026; I led development of the app.',
     tags: ['React Native', 'Expo', 'Supabase', 'ESP32', 'IoT'],
     accent: 'teal',
     image: 'projects/biofish.webp',
@@ -113,10 +121,10 @@ export const projects = [
   {
     id: 'aralite',
     title: 'Aralite — In-Browser SQL Analytics',
-    subtitle: 'Self-learning project · Data Engineering',
+    subtitle: 'Personal project · Data',
     category: 'featured',
     description:
-      'Rebuilt a Big Data course activity from scratch into a deployed dashboard analyzing a public DepEd dataset — 60,000+ schools, 27M+ learners. Runs DuckDB-WASM (real SQL) fully in-browser with no server; a Python/pandas pipeline cleans raw Excel into Parquet. Cascading Region → Barangay filters, auto-generated findings, and optional plain-English-to-SQL (BYOK AI).',
+      'Rebuilt a Big Data course activity from scratch into a deployed dashboard on a public DepEd dataset — 60,171 schools, 27M learners. A Python and pandas pipeline turns raw Excel into Parquet, reshaping 58 enrollment columns into 3.5M rows with zero dropped, and writes a quality report proving it. The browser then runs real SQL over that data with DuckDB-WASM, so there is no server and no database bill. Cascading Region-to-Barangay filters, auto-generated findings, and optional plain-English-to-SQL with your own AI key. Unit-tested with Vitest, checked by GitHub Actions on every push.',
     tags: ['DuckDB-WASM', 'React', 'TypeScript', 'Python', 'Pandas'],
     accent: 'blue',
     image: 'projects/aralite.webp',
@@ -125,12 +133,12 @@ export const projects = [
   },
   {
     id: 'fyropy',
-    title: 'Fyropy — AI "Second Brain" Capture App',
-    subtitle: 'Self-learning project · Software',
+    title: 'Fyropy — AI Capture App',
+    subtitle: 'Personal project · Software',
     category: 'featured',
     description:
-      'Capture-first notes/tasks app with AI auto-triage (type, tags, summary, topic), a weekly AI digest, and an insights dashboard. Built with React Native + Expo and Supabase (Postgres, Auth, RLS), BYOK Groq/Gemini. CI runs lint → typecheck → test via GitHub Actions.',
-    tags: ['React Native', 'Expo', 'Supabase', 'AI (Groq/Gemini)', 'CI'],
+      'A notes and tasks app where AI sorts each capture into a type, tags, a summary, and a topic group, using the user\'s own Groq or Gemini key. Built with React Native, Expo, TypeScript strict, and Supabase (Postgres, Auth, Row Level Security). Writes are optimistic — the screen updates first and rolls back if the save fails — which is exactly what the hook tests exist to prove. Tested at three levels with Jest, React Native Testing Library, and Playwright; GitHub Actions runs lint, typecheck, and tests on every pull request.',
+    tags: ['React Native', 'Expo', 'TypeScript', 'Supabase', 'Testing'],
     accent: 'violet',
     image: 'projects/fyropy.webp',
     live: 'https://fyropy.vercel.app',
@@ -193,7 +201,6 @@ export const projects = [
 ];
 
 export const certificates = [
-  // Add the image later: image: '/certs/filename.jpg'
   { id: 'c1', title: 'CCNA: Introduction to Networks', issuer: 'Cisco Networking Academy', year: '2025', image: '/certs/ccna.webp' },
   { id: 'c2', title: 'Python Data Fundamentals (7-course track)', issuer: 'DataCamp', year: '2026', image: '/certs/python-data.jpeg' },
   { id: 'c3', title: 'GitHub Foundations (4-course track)', issuer: 'DataCamp', year: '2025', image: '/certs/github-foundations.jpeg' },
@@ -204,25 +211,12 @@ export const certificates = [
   { id: 'c8', title: 'MIS Internship Completion (300 hrs)', issuer: 'Local Government of Cavite', year: '2024', image: '/certs/lgu.webp' },
 ];
 
+// Images live in public/art/ so they still load when Supabase is asleep.
+// Admin uploads go to Supabase Storage; mirror new pieces here afterwards.
 export const artworks = [
-  {
-    id: 'a1',
-    title: 'Yeji (ITZY)',
-    medium: 'Graphite on paper',
-    image: 'https://hcorszokbotwdbpjglvl.supabase.co/storage/v1/object/public/media/1781426161087-dinup0.jpg',
-  },
-  {
-    id: 'a2',
-    title: 'Cat Portrait',
-    medium: 'Graphite on paper',
-    image: 'https://hcorszokbotwdbpjglvl.supabase.co/storage/v1/object/public/media/1781426227544-1a0qqu.jpg',
-  },
-  {
-    id: 'a3',
-    title: 'Byeon Woo-seok',
-    medium: 'Graphite on paper',
-    image: 'https://hcorszokbotwdbpjglvl.supabase.co/storage/v1/object/public/media/1781426400383-z6ukfi.jpg',
-  },
+  { id: 'a1', title: 'Yeji (ITZY)', medium: 'Graphite on paper', image: '/art/yeji.jpg' },
+  { id: 'a2', title: 'Cat Portrait', medium: 'Graphite on paper', image: '/art/cat-portrait.jpg' },
+  { id: 'a3', title: 'Byeon Woo-seok', medium: 'Graphite on paper', image: '/art/byeon-woo-seok.jpg' },
 ];
 
 export const education = [

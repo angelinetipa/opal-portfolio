@@ -12,6 +12,9 @@
 //
 // Group labels stay plain on purpose. "Discipline" reads as
 // evidence; "Relentless Drive" reads as spin.
+//
+// RULE: where an award was won by a team, say so in the detail.
+// Sharing credit costs nothing and protects every other claim.
 // ============================================================
 
 /** Card metadata. Lives in code — it's design, not content. */
@@ -32,7 +35,7 @@ export const GROUPS = [
     id: 'discipline',
     label: 'Discipline & endurance',
     icon: '▲',
-    note: 'Years of training for events decided by small margins.',
+    note: 'Long commitments, and events decided by small margins.',
   },
   {
     id: 'creative',
@@ -64,7 +67,7 @@ export const recognitionSeed = [
   {
     id: 'r-apear',
     title: 'BIO-FISH — Top 8 Finalist',
-    detail: '4th Annual Prototyping Exhibit, Awards & Recognition (APEAR)',
+    detail: 'Capstone machine, team of 4 · 4th Annual Prototyping Exhibit, Awards & Recognition (APEAR) · I led development of its control app',
     year: '2026',
     group_name: 'rigor',
     featured: 'yes',
@@ -137,6 +140,15 @@ export const recognitionSeed = [
     featured: 'no',
     earlier: 'yes',
   },
+  {
+    id: 'r-yeso',
+    title: 'YES-O Officer',
+    detail: 'Youth for Environment in Schools Organization · 3 consecutive years',
+    year: '2018–2021',
+    group_name: 'discipline',
+    featured: 'no',
+    earlier: 'yes',
+  },
 
   // ---------- creative work ----------
   {
@@ -157,19 +169,11 @@ export const recognitionSeed = [
     featured: 'no',
     earlier: 'yes',
   },
-  {
-    id: 'r-yeso',
-    title: 'YES-O Officer',
-    detail: 'Youth for Environment in Schools Organization, 3 years',
-    year: 'since 2018',
-    group_name: 'creative',
-    featured: 'no',
-    earlier: 'yes',
-  },
 ]
 
 /**
  * Turn flat rows into display groups.
+ *
  * @param rows           the collection (from admin or the seed)
  * @param includeEarlier whether to keep items marked earlier
  * Empty groups are dropped so no blank cards render.
