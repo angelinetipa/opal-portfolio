@@ -13,6 +13,10 @@
 // Group labels stay plain on purpose. "Discipline" reads as
 // evidence; "Relentless Drive" reads as spin.
 //
+// ORDER: newest first, sorted at render time from the `year`
+// field — so it stays correct whether rows come from this seed
+// or from Supabase, without anyone maintaining a sort order.
+//
 // RULE: where an award was won by a team, say so in the detail.
 // Sharing credit costs nothing and protects every other claim.
 // ============================================================
@@ -53,22 +57,38 @@ export function isYes(value) {
   return value === true || value === 'yes'
 }
 
+/**
+ * Pull the latest 4-digit year out of a year field.
+ * Handles '2026', '2015–2017', 'since 2018' and empty values.
+ * Anything unparseable sorts last rather than crashing.
+ */
+function latestYear(value) {
+  const years = String(value || '').match(/\d{4}/g)
+  if (!years) return 0
+  return Math.max(...years.map(Number))
+}
+
+/** Newest first. Ties keep their original order. */
+function byYearDesc(a, b) {
+  return latestYear(b.year) - latestYear(a.year)
+}
+
 export const recognitionSeed = [
   // ---------- precision & rigor ----------
-  {
-    id: 'r-jlss',
-    title: 'DOST–JLSS Scholar',
-    detail: 'Qualified via competitive scholarship examination',
-    year: '2024',
-    group_name: 'rigor',
-    featured: 'yes',
-    earlier: 'no',
-  },
   {
     id: 'r-apear',
     title: 'BIO-FISH — Top 8 Finalist',
     detail: 'Capstone machine, team of 4 · 4th Annual Prototyping Exhibit, Awards & Recognition (APEAR) · I led development of its control app',
     year: '2026',
+    group_name: 'rigor',
+    featured: 'yes',
+    earlier: 'no',
+  },
+  {
+    id: 'r-jlss',
+    title: 'DOST–JLSS Scholar',
+    detail: 'Qualified via competitive scholarship examination',
+    year: '2024',
     group_name: 'rigor',
     featured: 'yes',
     earlier: 'no',
@@ -85,19 +105,19 @@ export const recognitionSeed = [
 
   // ---------- writing & communication ----------
   {
-    id: 'r-dspc',
-    title: '1st Place — Feature Writing',
-    detail: 'Division Schools Press Conference · Regional (RSPC) delegate',
-    year: '2015',
+    id: 'r-ascend',
+    title: 'Media Head — Software Engineering Day (ASCEND)',
+    detail: '3-day CpE symposium; led social media and live coverage',
+    year: '2026',
     group_name: 'communication',
     featured: 'yes',
     earlier: 'no',
   },
   {
-    id: 'r-ascend',
-    title: 'Media Head — Software Engineering Day (ASCEND)',
-    detail: '3-day CpE symposium; led social media and live coverage',
-    year: '2026',
+    id: 'r-dspc',
+    title: '1st Place — Feature Writing',
+    detail: 'Division Schools Press Conference · Regional (RSPC) delegate',
+    year: '2015',
     group_name: 'communication',
     featured: 'yes',
     earlier: 'no',
@@ -114,19 +134,19 @@ export const recognitionSeed = [
 
   // ---------- discipline & endurance ----------
   {
-    id: 'r-arnis-combative',
-    title: 'Bronze Medalist — Arnis Combative',
-    detail: 'STCAA Regional',
-    year: '2017',
+    id: 'r-yeso',
+    title: 'YES-O Officer',
+    detail: 'Youth for Environment in Schools Organization · 3 consecutive years',
+    year: '2018–2021',
     group_name: 'discipline',
     featured: 'no',
     earlier: 'yes',
   },
   {
-    id: 'r-arnis-baston',
-    title: 'Silver Medalist — Arnis Solo Baston',
-    detail: 'Provincial inter-school competition',
-    year: '2015',
+    id: 'r-arnis-combative',
+    title: 'Bronze Medalist — Arnis Combative',
+    detail: 'STCAA Regional',
+    year: '2017',
     group_name: 'discipline',
     featured: 'no',
     earlier: 'yes',
@@ -141,10 +161,10 @@ export const recognitionSeed = [
     earlier: 'yes',
   },
   {
-    id: 'r-yeso',
-    title: 'YES-O Officer',
-    detail: 'Youth for Environment in Schools Organization · 3 consecutive years',
-    year: '2018–2021',
+    id: 'r-arnis-baston',
+    title: 'Silver Medalist — Arnis Solo Baston',
+    detail: 'Provincial inter-school competition',
+    year: '2015',
     group_name: 'discipline',
     featured: 'no',
     earlier: 'yes',
@@ -172,7 +192,7 @@ export const recognitionSeed = [
 ]
 
 /**
- * Turn flat rows into display groups.
+ * Turn flat rows into display groups, newest first inside each group.
  *
  * @param rows           the collection (from admin or the seed)
  * @param includeEarlier whether to keep items marked earlier
@@ -181,15 +201,16 @@ export const recognitionSeed = [
 export function groupRecognition(rows = [], includeEarlier = false) {
   return GROUPS.map(g => ({
     ...g,
-    items: rows.filter(
-      r => r.group_name === g.id && (includeEarlier || !isYes(r.earlier))
-    ),
+    items: rows
+      .filter(r => r.group_name === g.id && (includeEarlier || !isYes(r.earlier)))
+      .slice()
+      .sort(byYearDesc),
   })).filter(g => g.items.length > 0)
 }
 
-/** Items marked featured — used in the short list on Home. */
+/** Items marked featured — used in the short list on Home, newest first. */
 export function featuredRecognition(rows = []) {
-  return rows.filter(r => isYes(r.featured))
+  return rows.filter(r => isYes(r.featured)).slice().sort(byYearDesc)
 }
 
 /** How many items are hidden behind the toggle. */

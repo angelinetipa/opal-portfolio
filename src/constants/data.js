@@ -8,6 +8,10 @@
 // RULE: after editing anything through /admin, mirror the change
 // back into this file. Otherwise a paused database serves stale
 // content with no warning.
+//
+// ORDER: certificates and projects are listed newest first.
+// On the live site the order comes from `sort_order` in Supabase,
+// so reorder there too after adding anything.
 // ============================================================
 
 export const profile = {
@@ -15,11 +19,10 @@ export const profile = {
   shortName: 'Angeline',
   role: 'Computer Engineering · Data & Software',
   status: 'Graduating Sept 2026 · open to work',
-  tagline: 'A careful, design-conscious engineer who finishes things properly.',
+  tagline: "I test what I build — and I say what it can't do.",
   about: [
-    `I'm a graduating Computer Engineering student at the Polytechnic University of the Philippines, majoring in Big Data. I led development of the control app for BIO-FISH, our capstone machine that turns fish-scale waste into bioplastic — and I've shipped three more projects on my own since. But how I work matters more than any one of them.`,
-    `My QA foundation comes from a DOST internship writing and executing test cases for two government web systems. That's the habit I carry everywhere: check the empty state, check the error state, check the thing nobody thought to try. I'm honest with data — I flag what's unconfirmed instead of filling the gap with a number that looks better.`,
-    `I work the way modern engineers do: AI-assisted, but judgment-led. The skill I trust isn't building from memory — it's knowing what's worth building, catching when an output is wrong, and structuring it cleanly. INFP heart, Scorpio precision: quietly competitive, creative with constraints, and self-aware enough to mark what I don't know instead of pretending I do.`,
+    `I'm a graduating Computer Engineering student at PUP Manila, majoring in Big Data. I led the control app for BIO-FISH, our capstone machine that turns fish-scale waste into bioplastic, and I've shipped three more projects on my own since. My QA internship at DOST taught me the habit I bring to everything: check the empty state, check the error state, check the thing nobody thought to try.`,
+    `I build with AI tools, but I own the decisions — what's worth building, whether the output is actually right, and how it's structured. I'd rather write down what a project can't do than let someone find out later. INFP heart, Scorpio precision: quiet, competitive, and careful with the details.`,
   ],
   location: 'Cavite City, Philippines',
   email: 'angelinetipa@gmail.com',
@@ -103,6 +106,10 @@ export const experience = [
 //
 // Every claim here must survive an interview. State what the
 // project is, one decision behind it, and what shipped.
+//
+// Subtitles name the real scope. "Capstone thesis" was wrong —
+// the machine was the thesis; the app was a separate course
+// requirement that I led.
 // ------------------------------------------------------------
 export const projects = [
   {
@@ -133,7 +140,7 @@ export const projects = [
   },
   {
     id: 'fyropy',
-    title: 'Fyropy — AI Capture App',
+    title: 'Fyropy — AI Notes & Tasks App',
     subtitle: 'Personal project · Software',
     category: 'featured',
     description:
@@ -200,12 +207,14 @@ export const projects = [
   },
 ];
 
+// Newest first. On the live site this order comes from `sort_order`
+// in Supabase — reorder there too, or the site keeps the old order.
 export const certificates = [
-  { id: 'c1', title: 'CCNA: Introduction to Networks', issuer: 'Cisco Networking Academy', year: '2025', image: '/certs/ccna.webp' },
-  { id: 'c2', title: 'Python Data Fundamentals (7-course track)', issuer: 'DataCamp', year: '2026', image: '/certs/python-data.jpeg' },
-  { id: 'c3', title: 'GitHub Foundations (4-course track)', issuer: 'DataCamp', year: '2025', image: '/certs/github-foundations.jpeg' },
-  { id: 'c4', title: 'Intermediate SQL', issuer: 'DataCamp', year: '2026', image: '/certs/intermediate-sql.jpeg' },
-  { id: 'c5', title: 'Introduction to Excel', issuer: 'DataCamp', year: '2026', image: '/certs/excel.jpeg' },
+  { id: 'c1', title: 'Python Data Fundamentals (7-course track)', issuer: 'DataCamp', year: '2026', image: '/certs/python-data.jpeg' },
+  { id: 'c2', title: 'Intermediate SQL', issuer: 'DataCamp', year: '2026', image: '/certs/intermediate-sql.jpeg' },
+  { id: 'c3', title: 'Introduction to Excel', issuer: 'DataCamp', year: '2026', image: '/certs/excel.jpeg' },
+  { id: 'c4', title: 'GitHub Foundations (4-course track)', issuer: 'DataCamp', year: '2025', image: '/certs/github-foundations.jpeg' },
+  { id: 'c5', title: 'CCNA: Introduction to Networks', issuer: 'Cisco Networking Academy', year: '2025', image: '/certs/ccna.webp' },
   { id: 'c6', title: 'HCCDA – GaussDB', issuer: 'Huawei ICT Academy', year: '2025', image: '/certs/gaussdb.webp' },
   { id: 'c7', title: 'Project LODI — OJT Completion (300 hrs)', issuer: 'DOST Central Office – ITD', year: '2025', image: '/certs/lodi.webp' },
   { id: 'c8', title: 'MIS Internship Completion (300 hrs)', issuer: 'Local Government of Cavite', year: '2024', image: '/certs/lgu.webp' },
