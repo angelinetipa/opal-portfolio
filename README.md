@@ -4,7 +4,7 @@
 
 **Live:** [opal-portfolio.vercel.app](https://opal-portfolio.vercel.app)
 
-![Black Opal home page](docs/screenshot.webp)
+![Black Opal home page](docs/screenshot.jpeg)
 
 ## What it is
 
