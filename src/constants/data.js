@@ -19,10 +19,10 @@ export const profile = {
   shortName: 'Angeline',
   role: 'Computer Engineering · Data & Software',
   status: 'Graduating Sept 2026 · open to work',
-  tagline: "I test what I build — and I say what it can't do.",
+  tagline: "Careful with details, quietly competitive.",
   about: [
     `I'm a graduating Computer Engineering student at PUP Manila, majoring in Big Data. I led the control app for BIO-FISH, our capstone machine that turns fish-scale waste into bioplastic, and I've shipped three more projects on my own since. My QA internship at DOST taught me the habit I bring to everything: check the empty state, check the error state, check the thing nobody thought to try.`,
-    `I build with AI tools, but I own the decisions — what's worth building, whether the output is actually right, and how it's structured. I'd rather write down what a project can't do than let someone find out later. INFP heart, Scorpio precision: quiet, competitive, and careful with the details.`,
+    `I build with AI tools, but I own the decisions — what's worth building, whether the output is actually right, and how it's structured. I'd rather write down what a project can't do than let someone find out later. I'm still growing as a communicator — speaking up doesn't come naturally to me, so I've been practicing by writing things down clearly instead. Outside of code I draw portraits in graphite, and it's the same skill really: sitting with something long enough to see what's actually there. INFP heart, Scorpio precision: quiet, competitive, and careful with the details.`,
   ],
   location: 'Cavite City, Philippines',
   email: 'angelinetipa@gmail.com',
@@ -32,7 +32,7 @@ export const profile = {
   photo: '/profile.webp',
   resume: '/resume.pdf',
   cv: '/cv.pdf',
-  targets: ['Software Developer', 'Data Engineer', 'Data Analyst', 'QA Engineer'],
+  targets: ['Software Developer', 'Data Analyst', 'QA Engineer'],
 };
 
 // Grouped toolkit — no fake percentages, just what she actually works with.
@@ -50,7 +50,7 @@ export const toolkit = [
   {
     group: 'Testing & Hardware',
     icon: '▲',
-    items: ['Manual QA', 'Test design', 'Jest', 'Vitest', 'Playwright', 'GitHub Actions', 'C / C++', 'Arduino'],
+    items: ['Manual QA', 'Test design', 'Jest', 'Vitest', 'Playwright', 'C / C++', 'GitHub Actions',  'Arduino'],
   },
 ];
 
@@ -118,7 +118,7 @@ export const projects = [
     subtitle: 'Capstone team of 4 · Lead Developer (app)',
     category: 'featured',
     description:
-      'React Native (Expo) app controlling our capstone ESP32 machine, which turns fish-scale waste into bioplastic across four automated stages. Machine commands are modelled as a Supabase Postgres queue rather than a status flag, so a dropped WiFi connection can never leave the machine acting on an old command. Shipped to web (Vercel) and Android (EAS Build), with a no-login demo mode that runs a full simulated cycle — no hardware needed. The machine itself was a team effort and a Top 8 finalist at APEAR 2026; I led development of the app.',
+      'React Native (Expo) app controlling our capstone ESP32 machine, which turns fish-scale waste into bioplastic across four automated stages. Machine commands are modelled as a Supabase Postgres queue rather than a status flag, so a dropped WiFi connection can never leave the machine acting on an old command. Shipped to web (Vercel) and Android (EAS Build), with a no-login demo mode that runs a full simulated cycle — no hardware needed. The machine itself was a team effort and a Top 8 finalist at APEAR 2026.',
     tags: ['React Native', 'Expo', 'Supabase', 'ESP32', 'IoT'],
     accent: 'teal',
     image: 'projects/biofish.webp',
