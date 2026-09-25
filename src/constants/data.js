@@ -32,7 +32,7 @@ export const profile = {
   photo: '/profile.webp',
   resume: '/resume.pdf',
   cv: '/cv.pdf',
-  targets: ['Software Developer', 'Data Analyst', 'QA Engineer'],
+  targets: ['Data Analyst', 'Data Engineer', 'Software Developer'],
 };
 
 // Grouped toolkit — no fake percentages, just what she actually works with.
@@ -50,7 +50,7 @@ export const toolkit = [
   {
     group: 'Testing & Hardware',
     icon: '▲',
-    items: ['Manual QA', 'Test design', 'Jest', 'Vitest', 'Playwright', 'C / C++', 'GitHub Actions',  'Arduino'],
+    items: ['Manual QA', 'Test design', 'Jest', 'Vitest', 'Playwright', 'C / C++', 'GitHub Actions', 'Arduino'],
   },
 ];
 
