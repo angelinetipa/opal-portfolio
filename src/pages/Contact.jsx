@@ -26,8 +26,7 @@ export default function Contact() {
         <p className="eyebrow">INSERT INTO opportunities</p>
         <h2 className="section-title">Let's work together.</h2>
         <p className="section-sub">
-          Open to entry-level roles in software development, data engineering,
-          data analytics, and QA.
+          Open to entry-level roles in data analytics, data engineering, software development, and QA.
         </p>
         {profile.status && (
           <span className="contact-status"><span className="cs-dot" />{profile.status}</span>
