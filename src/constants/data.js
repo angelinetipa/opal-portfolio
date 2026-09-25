@@ -18,7 +18,7 @@ export const profile = {
   name: 'Ma. Angeline Tipa',
   shortName: 'Angeline',
   role: 'Computer Engineering · Data & Software',
-  status: 'Graduating Sept 2026 · open to work',
+  status: 'Graduated Sept 2026 · open to work',
   tagline: "Careful with details, curious by default, quietly competitive.",
   about: [
     `I'm a graduating Computer Engineering student at PUP Manila, majoring in Big Data. I led the control app for BIO-FISH, our capstone machine that turns fish-scale waste into bioplastic, and I've shipped three more projects on my own since. My QA internship at DOST taught me the habit I bring to everything: check the empty state, check the error state, check the thing nobody thought to try.`,
