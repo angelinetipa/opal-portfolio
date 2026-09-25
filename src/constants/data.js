@@ -21,7 +21,7 @@ export const profile = {
   status: 'Graduated Sept 2026 · open to work',
   tagline: "Careful with details, curious by default, quietly competitive.",
   about: [
-    `I'm a graduating Computer Engineering student at PUP Manila, majoring in Big Data. I led the control app for BIO-FISH, our capstone machine that turns fish-scale waste into bioplastic, and I've shipped three more projects on my own since. My QA internship at DOST taught me the habit I bring to everything: check the empty state, check the error state, check the thing nobody thought to try.`,
+    `I’m a Computer Engineering graduate from PUP Manila, majoring in Big Data. I led the control app for BIO-FISH, our capstone machine that turns fish-scale waste into bioplastic, and I've shipped three more projects on my own since. My QA internship at DOST taught me the habit I bring to everything: check the empty state, check the error state, check the thing nobody thought to try.`,
     `I build with AI tools, but I own the decisions — what's worth building, whether the output is actually right, and how it's structured. I'd rather write down what a project can't do than let someone find out later. I'm still growing as a communicator — speaking up doesn't come naturally to me, so I've been practicing by writing things down clearly instead. Outside of code I draw portraits in graphite, and it's the same skill really: sitting with something long enough to see what's actually there.`,
   ],
   location: 'Cavite City, Philippines',
