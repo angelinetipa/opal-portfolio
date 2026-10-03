@@ -31,10 +31,10 @@ const DIVIDER = widths.map(w => '-'.repeat(w + 2)).join('+')
 const ROW = COLS.map(([, v], i) => cell(v, widths[i])).join('|')
 
 // timing in ms (about 3 seconds in total)
-const TYPE_MS = 16       // per character
-const POLISH_AT = 700    // stone starts to polish while the query types
-const SWEEP_AT = 2000    // one pass of light across the finished stone
-const HIDE_AT = 2750     // fade out
+const TYPE_MS = 24      // typing speed, higher = slower
+const POLISH_AT = 900   // when the stone starts polishing
+const SWEEP_AT = 2600   // when the light passes over it
+const HIDE_AT = 3600    // when the screen fades out
 const REMOVE_AFTER = 600 // unmount after the fade
 
 export default function Splash() {
