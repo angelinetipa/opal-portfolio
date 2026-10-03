@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Routes, Route, useLocation } from 'react-router-dom'
 import Splash from './components/Splash.jsx'
 import BgAmbient from './components/BgAmbient.jsx'
+import TiltEffect from './components/TiltEffect.jsx'
 import Navbar from './components/Navbar.jsx'
 import Footer from './components/Footer.jsx'
 import Home from './pages/Home.jsx'
@@ -28,6 +29,7 @@ export default function App() {
     <>
       <Splash />
       <BgAmbient />
+      <TiltEffect />
       <Navbar theme={theme} onToggleTheme={() => setTheme(t => (t === 'dark' ? 'light' : 'dark'))} />
       <Routes>
         <Route path="/" element={<Home />} />
