@@ -1,0 +1,122 @@
+/* ============================================
+   OPAL MOTION — light moving over a dark stone
+   1. Sweep: a band of light crosses the gem + photo blob
+   2. Play of color: cards catch light as you scroll
+   Import AFTER global.css and perf.css.
+   Only transform / opacity / background-position are animated.
+   --scroll (0 to 1) is set in BgAmbient.jsx.
+   ============================================ */
+
+/* ---------- 1. SWEEP ON THE GEM ---------- */
+.nav-gem {
+  position: relative;
+  overflow: hidden;
+}
+
+.nav-gem::after {
+  content: '';
+  position: absolute;
+  top: -10%;
+  bottom: -10%;
+  left: 0;
+  width: 55%;
+  background: linear-gradient(100deg,
+      transparent,
+      rgba(255, 255, 255, 0.7),
+      transparent);
+  transform: translateX(-180%) skewX(-18deg);
+  animation: gemSweep 5.5s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* ---------- SWEEP ON THE PHOTO BLOB ---------- */
+/* .ph::after is already used for the veil, so this uses ::before */
+.hero-photo::before {
+  content: '';
+  position: absolute;
+  top: -10%;
+  bottom: -10%;
+  left: 0;
+  width: 45%;
+  z-index: 2;
+  background: linear-gradient(100deg,
+      transparent,
+      rgba(120, 200, 255, 0.28),
+      rgba(95, 245, 138, 0.22),
+      transparent);
+  transform: translateX(-200%) skewX(-18deg);
+  animation: gemSweep 8s ease-in-out 2.5s infinite;
+  pointer-events: none;
+}
+
+/* rests for the first 55% of each loop, then one slow pass */
+@keyframes gemSweep {
+
+  0%,
+  55% {
+    transform: translateX(-200%) skewX(-18deg);
+  }
+
+  100% {
+    transform: translateX(380%) skewX(-18deg);
+  }
+}
+
+/* ---------- 2. PLAY OF COLOR ON SCROLL ---------- */
+.clay-hover {
+  position: relative;
+}
+
+.clay-hover::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background-image: linear-gradient(115deg,
+      transparent 36%,
+      rgba(79, 141, 255, 0.13) 43%,
+      rgba(47, 224, 180, 0.15) 50%,
+      rgba(139, 108, 246, 0.13) 57%,
+      transparent 64%);
+  background-size: 300% 100%;
+  background-repeat: repeat-x;
+  /* the band slides across as you scroll, and loops */
+  background-position: calc(var(--scroll, 0) * 600%) 0;
+  opacity: 0.85;
+  transition: opacity 0.35s ease;
+}
+
+.clay-hover:hover::after {
+  opacity: 1;
+}
+
+/* the page glow drifts a little with scroll (transform only) */
+.bg-sheen {
+  transform: translate3d(calc(var(--scroll, 0) * -5%),
+      calc(var(--scroll, 0) * -4%),
+      0);
+}
+
+/* light theme: a touch stronger so it still shows on white */
+[data-theme='light'] .clay-hover::after {
+  opacity: 1;
+}
+
+/* ---------- accessibility ---------- */
+@media (prefers-reduced-motion: reduce) {
+
+  .nav-gem::after,
+  .hero-photo::before {
+    animation: none;
+    opacity: 0;
+  }
+
+  .clay-hover::after {
+    background-position: 0 0;
+  }
+
+  .bg-sheen {
+    transform: none;
+  }
+}

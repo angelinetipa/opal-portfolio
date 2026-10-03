@@ -5,6 +5,7 @@ import App from './App.jsx'
 import { AuthProvider } from './lib/auth.jsx'
 import './styles/global.css'
 import './styles/perf.css'
+import './styles/opal-motion.css'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
