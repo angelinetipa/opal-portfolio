@@ -169,7 +169,7 @@ npm run preview   # serve the build locally
 | Awards, their groups, what shows on Home | `src/constants/recognition.js` |
 | What the Ctrl+K console answers | `src/constants/knowledge.js` |
 | Which fields the admin editor shows | `src/constants/adminSchema.js` |
-| Colors, spacing, the clay effect | the CSS tokens in `src/index.css` |
+| Colors, spacing, the clay effect | the CSS tokens in `src/styles/global.css` |
 | The seed-versus-database timeout | `TIMEOUT_MS` in `src/lib/useCollection.js` and `useContent.js` |
 
 Static images go in `public/` and are referenced with a leading slash (`/certs/ccna.webp`).

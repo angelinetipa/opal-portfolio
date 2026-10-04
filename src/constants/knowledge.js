@@ -28,7 +28,7 @@ export const answers = [
     id: 'who',
     q: 'Who is Angeline?',
     keys: ['who', 'about', 'yourself', 'intro', 'summary', 'background', 'bio'],
-    a: `Graduating BS Computer Engineering student at PUP Manila with a Big Data specialization, GWA 1.50, and a DOST–JLSS scholar. Detail- and design-conscious, builds with AI tools but stays judgment-led. Experience across software testing, full-stack development, and data analysis.`,
+    a: `BS Computer Engineering graduate of PUP Manila (September 2026) with a Big Data specialization, GWA 1.50, and a DOST–JLSS scholar. Detail- and design-conscious, builds with AI tools but stays judgment-led. Experience across software testing, full-stack development, and data analysis.`,
     link: { label: 'Read more', to: '/' },
   },
   {
@@ -42,7 +42,7 @@ export const answers = [
     id: 'available',
     q: 'When is she available to start?',
     keys: ['available', 'availability', 'start', 'when', 'graduate', 'graduating', 'notice'],
-    a: `Graduating September 2026 and currently open to work. Available for interviews now.`,
+    a: `Graduated September 2026 and currently open to work. Available for interviews now.`,
     link: { label: 'Contact', to: '/contact' },
   },
 

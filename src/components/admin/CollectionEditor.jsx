@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { supabase } from '../../lib/supabase.js'
 import FieldInput from './FieldInput.jsx'
 
@@ -10,13 +10,19 @@ export default function CollectionEditor({ table, schema }) {
   const [saving, setSaving] = useState(false)
   const [msg, setMsg] = useState('')
 
+  // lets a slow response for an old tab be ignored after switching tabs
+  const tableRef = useRef(table)
+  tableRef.current = table
+
   async function load() {
+    const asked = table
     setLoading(true)
     const { data, error } = await supabase
       .from(table)
       .select('*')
       .order('sort_order', { ascending: true })
       .order('created_at', { ascending: true })
+    if (tableRef.current !== asked) return
     setRows(error ? [] : (data || []))
     if (error) setMsg('Could not load: ' + error.message)
     setLoading(false)
@@ -24,10 +30,21 @@ export default function CollectionEditor({ table, schema }) {
 
   useEffect(() => { load() }, [table])
 
+  // A dropdown shows its first option by default, so store that value too.
+  // Otherwise an untouched dropdown saves as '' (and e.g. an award with
+  // no group would silently disappear from the page).
+  function withDefaults(form) {
+    schema.fields.forEach(f => {
+      if (f.type === 'select' && !form[f.key]) form[f.key] = f.options[0]
+    })
+    return form
+  }
+
   function startNew() {
     const blank = {}
     schema.fields.forEach(f => { blank[f.key] = '' })
-    setEditing(blank)
+    setMsg('')
+    setEditing(withDefaults(blank))
   }
 
   function startEdit(row) {
@@ -36,7 +53,8 @@ export default function CollectionEditor({ table, schema }) {
       if (f.type === 'lines' && Array.isArray(row[f.key])) form[f.key] = row[f.key].join('\n')
       if (f.type === 'csv' && Array.isArray(row[f.key])) form[f.key] = row[f.key].join(', ')
     })
-    setEditing(form)
+    setMsg('')
+    setEditing(withDefaults(form))
   }
 
   async function save() {
@@ -67,20 +85,23 @@ export default function CollectionEditor({ table, schema }) {
   async function remove(id) {
     if (!confirm('Delete this entry? This cannot be undone.')) return
     const { error } = await supabase.from(table).delete().eq('id', id)
-    if (!error) load()
+    if (error) { alert('Could not delete: ' + error.message); return }
+    load()
   }
 
   async function move(i, dir) {
     const j = i + dir
     if (j < 0 || j >= rows.length) return
     const next = [...rows]
-    ;[next[i], next[j]] = [next[j], next[i]]
+      ;[next[i], next[j]] = [next[j], next[i]]
     setRows(next)
-    await Promise.all(
+    const results = await Promise.all(
       next.map((row, idx) =>
         supabase.from(table).update({ sort_order: idx }).eq('id', row.id)
       )
     )
+    // if any save failed, show the real order again
+    if (results.some(r => r.error)) load()
   }
 
   const titleKey = schema.fields[0].key

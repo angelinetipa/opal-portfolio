@@ -36,7 +36,7 @@ export default function Home() {
                 <span className="hero-status"><span className="hs-dot" />{profile.status}</span>
               </div>
             )}
-            <p className="eyebrow">SELECT * FROM portfolio WHERE owner = 'angeline';</p>
+            <p className="eyebrow">FROM portfolio</p>
           </Reveal>
           <Reveal delay={80}>
             <h1 className="hero-title">
@@ -52,7 +52,7 @@ export default function Home() {
           <Reveal delay={220}>
             <p className="hero-chips-label">Targeting roles in:</p>
             <div className="hero-chips">
-              {profile.targets.map(t => <span key={t} className="chip">{t}</span>)}
+              {(profile.targets || []).map(t => <span key={t} className="chip">{t}</span>)}
             </div>
           </Reveal>
           <Reveal delay={300}>
@@ -71,7 +71,6 @@ export default function Home() {
 
         <Reveal delay={200} className="hero-visual-wrap">
           <div className="hero-visual">
-            <div className="opal-blob hero-gem" aria-hidden="true" />
             <div className="hero-photo clay ph">
               {profile.photo ? <img src={profile.photo} alt={profile.name} /> : 'profile photo — coming soon'}
             </div>
@@ -134,7 +133,7 @@ export default function Home() {
         <div className="about-grid">
           <Reveal delay={100}>
             <div className="about-copy">
-              {profile.about.map((p, i) => <p key={i}>{p}</p>)}
+              {(profile.about || []).map((p, i) => <p key={i}>{p}</p>)}
             </div>
           </Reveal>
           <Reveal delay={200}>
@@ -170,7 +169,7 @@ export default function Home() {
                   <h3>{t.group}</h3>
                 </div>
                 <div className="tk-items">
-                  {t.items.map(item => <span key={item} className="chip">{item}</span>)}
+                  {(t.items || []).map(item => <span key={item} className="chip">{item}</span>)}
                 </div>
               </div>
             </Reveal>

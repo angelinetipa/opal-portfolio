@@ -7,7 +7,6 @@ import {
 } from '../../constants/data.js'
 import FieldInput from './FieldInput.jsx'
 import ObjectListEditor from './ObjectListEditor.jsx'
-import StringListEditor from './StringListEditor.jsx'
 
 // load a content doc with fallback
 async function fetchContent(key, seed) {
@@ -47,18 +46,20 @@ export default function SettingsEditor() {
 
   useEffect(() => {
     async function load() {
-      const [p, t, e] = await Promise.all([
-        fetchContent('profile', seedProfile),
-        fetchContent('toolkit', seedToolkit),
-        fetchContent('education', seedEducation),
-      ])
-      setProfile(p)
-      setAboutText((p.about || []).join('\n\n'))
-      setTargetsText((p.targets || []).join(', '))
-      setToolkit((t || []).map(g => ({ ...g, items: (g.items || []).join(', ') })))
-      setEducation(e)
-      setAwards(a)
-      setLoading(false)
+      try {
+        const [p, t, e] = await Promise.all([
+          fetchContent('profile', seedProfile),
+          fetchContent('toolkit', seedToolkit),
+          fetchContent('education', seedEducation),
+        ])
+        setProfile(p)
+        setAboutText((p.about || []).join('\n\n'))
+        setTargetsText((p.targets || []).join(', '))
+        setToolkit((t || []).map(g => ({ ...g, items: (g.items || []).join(', ') })))
+        setEducation(e)
+      } finally {
+        setLoading(false) // never get stuck on "Loading…"
+      }
     }
     load()
   }, [])
@@ -79,12 +80,15 @@ export default function SettingsEditor() {
         })}
       >
         <FieldInput field={{ label: 'Profile photo', type: 'image' }} value={profile.photo} onChange={url => set('photo', url)} />
-        <FieldInput field={{ label: 'CV / Resume (PDF)', type: 'file', accept: 'application/pdf' }} value={profile.cv} onChange={url => set('cv', url)} />
+        <FieldInput field={{ label: 'Resume (PDF, one page)', type: 'file', accept: 'application/pdf' }} value={profile.resume} onChange={url => set('resume', url)} />
+        <FieldInput field={{ label: 'Full CV (PDF)', type: 'file', accept: 'application/pdf' }} value={profile.cv} onChange={url => set('cv', url)} />
         <div className="set-grid">
           <label className="fi"><span>Full name</span>
             <input value={profile.name || ''} onChange={e => set('name', e.target.value)} /></label>
           <label className="fi"><span>Short name</span>
             <input value={profile.shortName || ''} onChange={e => set('shortName', e.target.value)} /></label>
+          <label className="fi"><span>Status (shown in the green pill)</span>
+            <input value={profile.status || ''} onChange={e => set('status', e.target.value)} /></label>
           <label className="fi"><span>Location</span>
             <input value={profile.location || ''} onChange={e => set('location', e.target.value)} /></label>
           <label className="fi"><span>Email</span>
@@ -132,6 +136,7 @@ export default function SettingsEditor() {
             { key: 'school', label: 'School' },
             { key: 'degree', label: 'Degree' },
             { key: 'period', label: 'Period', placeholder: '2022 – Present' },
+            { key: 'note', label: 'Note (optional)', type: 'textarea' },
           ]}
           addLabel="+ Add school"
         />
