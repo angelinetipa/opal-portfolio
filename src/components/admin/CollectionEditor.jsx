@@ -93,7 +93,7 @@ export default function CollectionEditor({ table, schema }) {
     const j = i + dir
     if (j < 0 || j >= rows.length) return
     const next = [...rows]
-      ;[next[i], next[j]] = [next[j], next[i]]
+    ;[next[i], next[j]] = [next[j], next[i]]
     setRows(next)
     const results = await Promise.all(
       next.map((row, idx) =>

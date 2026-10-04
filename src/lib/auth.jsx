@@ -11,7 +11,7 @@ export function AuthProvider({ children }) {
     if (!supabase) { setReady(true); return }
     supabase.auth.getSession()
       .then(({ data }) => setSession(data.session))
-      .catch(() => { })                 // offline or paused project: show the login, not a stuck loader
+      .catch(() => {})                 // offline or paused project: show the login, not a stuck loader
       .finally(() => setReady(true))
     const { data: sub } = supabase.auth.onAuthStateChange((_e, s) => setSession(s))
     return () => sub.subscription.unsubscribe()
