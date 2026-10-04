@@ -21,8 +21,7 @@ export const profile = {
   status: 'Graduated Sept 2026 · open to work',
   tagline: "Careful with details, curious by default, quietly competitive.",
   about: [
-    `I’m a Computer Engineering graduate from PUP Manila, majoring in Big Data. I led the control app for BIO-FISH, our capstone machine that turns fish-scale waste into bioplastic, and I've shipped three more projects on my own since. My QA internship at DOST taught me the habit I bring to everything: check the empty state, check the error state, check the thing nobody thought to try.`,
-    `I build with AI tools, but I own the decisions — what's worth building, whether the output is actually right, and how it's structured. I'd rather write down what a project can't do than let someone find out later. I'm still growing as a communicator — speaking up doesn't come naturally to me, so I've been practicing by writing things down clearly instead. Outside of code I draw portraits in graphite, and it's the same skill really: sitting with something long enough to see what's actually there.`,
+    `I’m a Computer Engineering graduate from PUP Manila specializing in Big Data Analytics. I led the control app for BIO FISH, our capstone machine that turns fish scale waste into bioplastic, and have since built three more projects on my own. My QA internship at DOST taught me to look beyond whether something works. I check the empty state, the error state, and the cases nobody thought to try.`, `I use AI tools to build faster, but I own the decisions. I decide what is worth building, whether the result is right, and how everything fits together. Outside of code, I draw portraits in graphite. It’s the same skill I bring to my work: paying attention, noticing what others miss, and understanding what’s really there.`
   ],
   location: 'Cavite City, Philippines',
   email: 'angelinetipa@gmail.com',
