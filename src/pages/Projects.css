@@ -41,7 +41,8 @@
   flex-wrap: wrap;
 }
 
-/* card action row: Live / Code / Details */
+/* card action row: Live / Code / Details
+   (.btn-sm now lives in global.css) */
 .proj-actions {
   display: flex;
   align-items: center;
